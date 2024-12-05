@@ -24,4 +24,4 @@ nvidia-smi > gpu_status_${LSB_JOBID}.log
 source /zhome/d6/a/186925/02356_Deep_Learning/Deep_learning_project_2024/02356_Deep_Learning_Project/bin/activate
 cd /zhome/d6/a/186925/Deep_Learning/rStar
 
-bash /zhome/d6/a/186925/Deep_Learning/rStar/scripts/run_gsm8k_generator_disk2.sh --gpu_memory_utilization 0.9
+bash /zhome/d6/a/186925/Deep_Learning/rStar/scripts/run_gsm8k_generator_rollout2.sh --gpu_memory_utilization 0.9
