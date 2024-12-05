@@ -3,6 +3,11 @@
 import sys
 import os, json, time
 from tqdm import tqdm
+from huggingface_hub import login  # Import for token authentication
+
+# Hardcode the Hugging Face token
+HUGGINGFACE_TOKEN = "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"
+login(HUGGINGFACE_TOKEN)
 
 sys.path.append(".")
 
