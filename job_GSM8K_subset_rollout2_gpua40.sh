@@ -1,14 +1,14 @@
 #!/bin/sh
-#BSUB -q gpua100
-#BSUB -J rStar_Project_GSM8K_subset_disk2
+#BSUB -q gpua40
+#BSUB -J rStar_Project_GSM8K_subset_rollout2_gpua40
 #BSUB -n 4
 #BSUB -gpu "num=1:mode=exclusive_process"
 #BSUB -R "span[hosts=1]"    # Ensures that all cores or tasks requested by the job run on a single host (node)
 #BSUB -R "rusage[mem=16GB]"
 #BSUB -M 16GB
-#BSUB -W 72:00
-#BSUB -o rStar_Output_rStar_Project_GSM8K_subset_disk2_%J.out
-#BSUB -e rStar_Error_rStar_Project_GSM8K_subset_disk2_%J.err
+#BSUB -W 24:00
+#BSUB -o rStar_Output_rStar_Project_GSM8K_subset_rollout2_gpua40_%J.out
+#BSUB -e rStar_Error_rStar_Project_GSM8K_subset_rollout2_gpua40_%J.err
 
 
 module load python3/3.10.14
