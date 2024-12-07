@@ -1,14 +1,14 @@
 #!/bin/sh
 #BSUB -q gpua100
-#BSUB -J GSM8K_subset_rollout5
+#BSUB -J GSM8K_subset_rollout1
 #BSUB -n 4
 #BSUB -gpu "num=1:mode=exclusive_process"
 #BSUB -R "span[hosts=1]"    # Ensures that all cores or tasks requested by the job run on a single host (node)
 #BSUB -R "rusage[mem=16GB]"
 #BSUB -M 16GB
-#BSUB -W 24:00
-#BSUB -o GSM8K_subset_rollout5_%J.out
-#BSUB -e GSM8K_subset_rollout5_%J.err
+#BSUB -W 72:00
+#BSUB -o GSM8K_subset_rollout1_%J.out
+#BSUB -e GSM8K_subset_rollout1_%J.err
 
 
 module load python3/3.10.14
@@ -24,4 +24,4 @@ nvidia-smi > gpu_status_${LSB_JOBID}.log
 source /zhome/d6/a/186925/02356_Deep_Learning/Deep_learning_project_2024/02356_Deep_Learning_Project/bin/activate
 cd /zhome/d6/a/186925/Deep_Learning/rStar
 
-bash /zhome/d6/a/186925/Deep_Learning/rStar/scripts/run_gsm8k_generator_rollout5.sh --gpu_memory_utilization 0.9
+bash /zhome/d6/a/186925/Deep_Learning/rStar/scripts/run_gsm8k_generator_rollout1.sh --gpu_memory_utilization 0.9
