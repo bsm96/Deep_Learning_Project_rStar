@@ -24,7 +24,7 @@ def load_HF_model(ckpt) -> tuple:
 
 
 def generate_with_HF_model(
-    tokenizer, model, input=None, temperature=1.2, top_p=0.95, top_k=40, num_beams=1, max_new_tokens=128, **kwargs
+    tokenizer, model, input=None, temperature=0.8, top_p=0.95, top_k=40, num_beams=1, max_new_tokens=128, **kwargs
 ):
     try:
         inputs = tokenizer(input, return_tensors="pt")

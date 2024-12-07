@@ -1,0 +1,1943 @@
+Namespace(note='default', seed=42, api='vllm', model_ckpt='microsoft/Phi-3-mini-4k-instruct', root_dir='run_outputs/GSM8K/Mistral-7B-v0.1/2024-12-05_13-32-46---[default]', dataset_name='GSM8K', resume=None, threshold=0.999, max_num_seqs=256, multi_choice_prompt_type=None, mask_left_boundary=0.2, mask_right_boundary=0.5, num_masked_solution_traces=4, rc_mode='mid', rc_temperature=1.0, rc_n_completions=1, rc_criteria='reward', cutoff_rollout=-1, start_idx=-1, end_idx=-1, fewshot_config_path='prompts/GSM8K/fewshot_cot/fewshot_cot_config.json', fewshot_prompt_path='prompts/GSM8K/fewshot_cot/fewshot_cot_prompt.txt')
+INFO 12-07 16:00:32 config.py:350] This model supports multiple tasks: {'embedding', 'generate'}. Defaulting to 'generate'.
+INFO 12-07 16:00:32 llm_engine.py:249] Initializing an LLM engine (v0.6.4.post1) with config: model='microsoft/Phi-3-mini-4k-instruct', speculative_config=None, tokenizer='microsoft/Phi-3-mini-4k-instruct', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=4096, download_dir=None, load_format=LoadFormat.AUTO, tensor_parallel_size=1, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, kv_cache_dtype=auto, quantization_param_path=None, device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='outlines'), observability_config=ObservabilityConfig(otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=42, served_model_name=microsoft/Phi-3-mini-4k-instruct, num_scheduler_steps=1, chunked_prefill_enabled=False multi_step_stream_outputs=True, enable_prefix_caching=False, use_async_output_proc=True, use_cached_outputs=False, chat_template_text_format=string, mm_processor_kwargs=None, pooler_config=None)
+INFO 12-07 16:00:33 selector.py:135] Using Flash Attention backend.
+INFO 12-07 16:00:34 model_runner.py:1072] Starting to load model microsoft/Phi-3-mini-4k-instruct...
+INFO 12-07 16:00:34 weight_utils.py:243] Using model weights format ['*.safetensors']
+INFO 12-07 16:04:03 model_runner.py:1077] Loading model weights took 7.1183 GB
+INFO 12-07 16:04:07 worker.py:232] Memory profiling results: total_gpu_memory=39.50GiB initial_memory_usage=7.61GiB peak_torch_memory=7.44GiB memory_usage_post_profile=7.65GiB non_torch_memory=0.52GiB kv_cache_size=27.59GiB gpu_memory_utilization=0.90
+INFO 12-07 16:04:08 gpu_executor.py:113] # GPU blocks: 4708, # CPU blocks: 2730
+INFO 12-07 16:04:08 gpu_executor.py:117] Maximum concurrency for 4096 tokens per request: 18.39x
+INFO 12-07 16:04:18 model_runner.py:1400] Capturing cudagraphs for decoding. This may lead to unexpected consequences if the model is not static. To run the model in eager mode, set 'enforce_eager=True' or use '--enforce-eager' in the CLI.
+INFO 12-07 16:04:18 model_runner.py:1404] If out-of-memory error occurs during cudagraph capture, consider decreasing `gpu_memory_utilization` or switching to eager mode. You can also reduce the `max_num_seqs` as needed to decrease memory usage.
+INFO 12-07 16:04:34 model_runner.py:1518] Graph capturing finished in 16 secs, took 0.23 GiB
+
+[Processing file 0; Total number of files: 200]
+
+==> Ground truth answer: 18
+==> Unfiltered answers: ['18.0', '18.0', '18.0', '18.0', '18.0', '18.0', '18.0', '9.0']
+==> Pre-filtered answers: ['18.0', '18.0', '18.0', '18.0', '18.0', '18.0', '18.0', '9.0']
+==> RC-filtered answers: ['18.0', '18.0']
+==> Confidence: defaultdict(<class 'float'>, {'18.0': 1.0})
+==> Survival rates: {'18.0': 0.375}
+==> Scores: {'18.0': 1.375}
+==> Winner answer: 18.0
+==> Correct: True
+Acc: 1.0000; Majority vote acc: 1.0000; Limit acc: 1.0000
+
+[Processing file 1; Total number of files: 200]
+
+You are very confident. Skipping...
+==> Correct: True
+Acc: 1.0000; Majority vote acc: 1.0000; Limit acc: 1.0000
+
+[Processing file 2; Total number of files: 200]
+
+==> Ground truth answer: 70000
+==> Unfiltered answers: ['120000.0', '40000.0', '40000.0', '40000.0', '65000.0', '30000.0', '70000.0', '70000.0', '120000.0', '30000.0', '70000.0', '110000.0']
+==> Pre-filtered answers: ['120000.0', '40000.0', '40000.0', '40000.0', '65000.0', '30000.0', '70000.0', '70000.0', '120000.0', '30000.0', '70000.0', '110000.0']
+==> RC-filtered answers: []
+==> Winner answer: 70000.0
+
+==> Correct: True
+Acc: 1.0000; Majority vote acc: 1.0000; Limit acc: 1.0000
+
+[Processing file 3; Total number of files: 200]
+
+==> Ground truth answer: 540
+==> Unfiltered answers: ['540.0', '540.0', '540.0', '540.0', '540.0', '540.0', '540.0', '540.0', '1620.0', '1620.0']
+==> Pre-filtered answers: ['540.0', '540.0', '540.0', '540.0', '540.0', '540.0', '540.0', '540.0', '1620.0', '1620.0']
+==> RC-filtered answers: ['540.0', '540.0', '540.0']
+==> Confidence: defaultdict(<class 'float'>, {'540.0': 1.0})
+==> Survival rates: {'540.0': 0.4444444444444444}
+==> Scores: {'540.0': 1.4444444444444444}
+==> Winner answer: 540.0
+==> Correct: True
+Acc: 1.0000; Majority vote acc: 1.0000; Limit acc: 1.0000
+
+[Processing file 4; Total number of files: 200]
+
+==> Ground truth answer: 20
+==> Unfiltered answers: ['20.0', '20.0', '20.0', '20.0', '20.0', '20.0', '20.0', '2.0', '60.0', '20.0', '20.0', '20.0', '20.0']
+==> Pre-filtered answers: ['20.0', '20.0', '20.0', '20.0', '20.0', '20.0', '20.0', '2.0', '60.0', '20.0', '20.0', '20.0', '20.0']
+==> RC-filtered answers: ['20.0', '20.0', '20.0']
+==> Confidence: defaultdict(<class 'float'>, {'20.0': 1.0})
+==> Survival rates: {'20.0': 0.2727272727272727}
+==> Scores: {'20.0': 1.2727272727272727}
+==> Winner answer: 20.0
+==> Correct: True
+Acc: 1.0000; Majority vote acc: 1.0000; Limit acc: 1.0000
+
+[Processing file 5; Total number of files: 200]
+
+==> Ground truth answer: 64
+==> Unfiltered answers: ['85.0', '85.0', '85.0', '85.0', '64.0', '80.0', '80.0', '64.0', '40.0', '64.0', '64.0', '64.0', '64.0', '64.0', '64.0', '64.0', '64.0', '64.0']
+==> Pre-filtered answers: ['85.0', '85.0', '85.0', '85.0', '64.0', '80.0', '80.0', '64.0', '40.0', '64.0', '64.0', '64.0', '64.0', '64.0', '64.0', '64.0', '64.0', '64.0']
+WARNING 12-07 16:05:36 scheduler.py:1481] Sequence group 239 is preempted by PreemptionMode.RECOMPUTE mode because there is not enough KV cache space. This can affect the end-to-end performance. Increase gpu_memory_utilization or tensor_parallel_size to provide more KV cache memory. total_num_cumulative_preemption=1
+==> RC-filtered answers: ['64.0', '64.0', '64.0']
+==> Confidence: defaultdict(<class 'float'>, {'64.0': 1.0})
+==> Survival rates: {'64.0': 0.25}
+==> Scores: {'64.0': 1.25}
+==> Winner answer: 64.0
+==> Correct: True
+Acc: 1.0000; Majority vote acc: 1.0000; Limit acc: 1.0000
+
+[Processing file 6; Total number of files: 200]
+
+==> Ground truth answer: 260
+==> Unfiltered answers: ['260.0', '260.0', '260.0', '260.0', '260.0', '260.0', '260.0', '20.0', '160.0']
+==> Pre-filtered answers: ['260.0', '260.0', '260.0', '260.0', '260.0', '260.0', '260.0', '20.0', '160.0']
+==> RC-filtered answers: ['260.0', '260.0']
+==> Confidence: defaultdict(<class 'float'>, {'260.0': 1.0})
+==> Survival rates: {'260.0': 0.4}
+==> Scores: {'260.0': 1.4}
+==> Winner answer: 260.0
+==> Correct: True
+Acc: 1.0000; Majority vote acc: 1.0000; Limit acc: 1.0000
+
+[Processing file 7; Total number of files: 200]
+
+Well, no correct answer in candidates. Skipping...
+==> Correct: False
+Acc: 0.8750; Majority vote acc: 0.8750; Limit acc: 0.8750
+
+[Processing file 8; Total number of files: 200]
+
+Well, no correct answer in candidates. Skipping...
+==> Correct: False
+Acc: 0.7778; Majority vote acc: 0.7778; Limit acc: 0.7778
+
+[Processing file 9; Total number of files: 200]
+
+You are very confident. Skipping...
+==> Correct: True
+Acc: 0.8000; Majority vote acc: 0.8000; Limit acc: 0.8000
+
+[Processing file 10; Total number of files: 200]
+
+==> Ground truth answer: 366
+==> Unfiltered answers: ['246.0', '246.0', '366.0', '366.0', '366.0', '366.0', '366.0', '60.0', '366.0', '366.0', '366.0', '366.0', '366.0', '366.0', '366.0', '366.0', '366.0', '366.0', '366.0', '366.0']
+==> Pre-filtered answers: ['246.0', '246.0', '366.0', '366.0', '366.0', '366.0', '366.0', '60.0', '366.0', '366.0', '366.0', '366.0', '366.0', '366.0', '366.0', '366.0', '366.0', '366.0', '366.0', '366.0']
+==> RC-filtered answers: ['366.0', '366.0', '366.0', '366.0', '366.0', '366.0']
+==> Confidence: defaultdict(<class 'float'>, {'366.0': 1.0})
+==> Survival rates: {'366.0': 0.3}
+==> Scores: {'366.0': 1.3}
+==> Winner answer: 366.0
+==> Correct: True
+Acc: 0.8182; Majority vote acc: 0.8182; Limit acc: 0.8182
+
+[Processing file 11; Total number of files: 200]
+
+Well, no correct answer in candidates. Skipping...
+==> Correct: False
+Acc: 0.7500; Majority vote acc: 0.7500; Limit acc: 0.7500
+
+[Processing file 12; Total number of files: 200]
+
+Well, no correct answer in candidates. Skipping...
+==> Correct: False
+Acc: 0.6923; Majority vote acc: 0.6923; Limit acc: 0.6923
+
+[Processing file 13; Total number of files: 200]
+
+Well, no correct answer in candidates. Skipping...
+==> Correct: False
+Acc: 0.6429; Majority vote acc: 0.6429; Limit acc: 0.6429
+
+[Processing file 14; Total number of files: 200]
+
+You are very confident. Skipping...
+==> Correct: True
+Acc: 0.6667; Majority vote acc: 0.6667; Limit acc: 0.6667
+
+[Processing file 15; Total number of files: 200]
+
+==> Ground truth answer: 125
+==> Unfiltered answers: ['125.0', '125.0', '125.0', '160.0', '160.0', '160.0', '160.0', '125.0', '2971.0', '2971.0', '2971.0', '2971.0']
+==> Pre-filtered answers: ['125.0', '125.0', '125.0', '160.0', '160.0', '160.0', '160.0', '125.0', '2971.0', '2971.0', '2971.0', '2971.0']
+==> RC-filtered answers: []
+==> Winner answer: 125.0
+
+==> Correct: True
+Acc: 0.6875; Majority vote acc: 0.6875; Limit acc: 0.6875
+
+[Processing file 16; Total number of files: 200]
+
+==> Ground truth answer: 230
+==> Unfiltered answers: ['800.0', '230.0', '230.0', '230.0', '230.0', None]
+==> Pre-filtered answers: ['800.0', '230.0', '230.0', '230.0', '230.0']
+==> RC-filtered answers: []
+==> Winner answer: 230.0
+
+==> Correct: True
+Acc: 0.7059; Majority vote acc: 0.7059; Limit acc: 0.7059
+
+[Processing file 17; Total number of files: 200]
+
+==> Ground truth answer: 57500
+==> Unfiltered answers: ['57500.0', '57500.0', '57500.0', '35000.0', '1150.0', '57500.0', '57500.0', '1150.0']
+==> Pre-filtered answers: ['57500.0', '57500.0', '57500.0', '35000.0', '1150.0', '57500.0', '57500.0', '1150.0']
+==> RC-filtered answers: []
+==> Winner answer: 57500.0
+
+==> Correct: True
+Acc: 0.7222; Majority vote acc: 0.7222; Limit acc: 0.7222
+
+[Processing file 18; Total number of files: 200]
+
+You are very confident. Skipping...
+==> Correct: True
+Acc: 0.7368; Majority vote acc: 0.7368; Limit acc: 0.7368
+
+[Processing file 19; Total number of files: 200]
+
+==> Ground truth answer: 6
+==> Unfiltered answers: ['4.0', '3.0', '3.0', '4.0', '4.0', '4.0', '4.0', '4.0', '4.0', '6.0', '4.0', '4.0', '4.0', '4.0', '30.0']
+==> Pre-filtered answers: ['4.0', '3.0', '3.0', '4.0', '4.0', '4.0', '4.0', '4.0', '4.0', '6.0', '4.0', '4.0', '4.0', '4.0', '30.0']
+==> RC-filtered answers: ['4.0', '4.0', '4.0']
+==> Winner answer: None
+==> Correct: False
+Acc: 0.7000; Majority vote acc: 0.7000; Limit acc: 0.7500
+
+[Processing file 20; Total number of files: 200]
+
+==> Ground truth answer: 15
+==> Unfiltered answers: ['10.0', '5.0', '15.0', '18.0', '15.67', '10.0', '9.0', '15.0']
+==> Pre-filtered answers: ['10.0', '5.0', '15.0', '18.0', '15.67', '10.0', '9.0', '15.0']
+==> RC-filtered answers: []
+==> Winner answer: 10.0
+
+==> Correct: False
+Acc: 0.6667; Majority vote acc: 0.6667; Limit acc: 0.7619
+
+[Processing file 21; Total number of files: 200]
+
+Well, no correct answer in candidates. Skipping...
+==> Correct: False
+Acc: 0.6364; Majority vote acc: 0.6364; Limit acc: 0.7273
+
+[Processing file 22; Total number of files: 200]
+
+You are very confident. Skipping...
+==> Correct: True
+Acc: 0.6522; Majority vote acc: 0.6522; Limit acc: 0.7391
+
+[Processing file 23; Total number of files: 200]
+
+You are very confident. Skipping...
+==> Correct: True
+Acc: 0.6667; Majority vote acc: 0.6667; Limit acc: 0.7500
+
+[Processing file 24; Total number of files: 200]
+
+==> Ground truth answer: 26
+==> Unfiltered answers: ['26.0', '78.0', '14.625', '78.0', '26.0', '26.0', '26.0', '32.5', '26.0', '19.5', '14.625', '26.0', '19.5', '78.0']
+==> Pre-filtered answers: ['26.0', '78.0', '14.625', '78.0', '26.0', '26.0', '26.0', '32.5', '26.0', '19.5', '14.625', '26.0', '19.5', '78.0']
+==> RC-filtered answers: ['26.0', '26.0']
+==> Confidence: defaultdict(<class 'float'>, {'26.0': 1.0})
+==> Survival rates: {'26.0': 0.3333333333333333}
+==> Scores: {'26.0': 1.3333333333333333}
+==> Winner answer: 26.0
+==> Correct: True
+Acc: 0.6800; Majority vote acc: 0.6800; Limit acc: 0.7600
+
+[Processing file 25; Total number of files: 200]
+
+==> Ground truth answer: 2
+==> Unfiltered answers: ['2.0', '2.0', '2.0', '2.0', '2.0', '6.0', None]
+==> Pre-filtered answers: ['2.0', '2.0', '2.0', '2.0', '2.0', '6.0']
+==> RC-filtered answers: []
+==> Winner answer: 2.0
+
+==> Correct: True
+Acc: 0.6923; Majority vote acc: 0.6923; Limit acc: 0.7692
+
+[Processing file 26; Total number of files: 200]
+
+==> Ground truth answer: 243
+==> Unfiltered answers: ['243.0', '243.0', '243.0', '243.0', '243.0', '243.0', '243.5', '243.5', '243.0', '67.5']
+==> Pre-filtered answers: ['243.0', '243.0', '243.0', '243.0', '243.0', '243.0', '243.5', '243.5', '243.0', '67.5']
+==> RC-filtered answers: ['243.0']
+==> Winner answer: 243.0
+
+==> Correct: True
+Acc: 0.7037; Majority vote acc: 0.7037; Limit acc: 0.7778
+
+[Processing file 27; Total number of files: 200]
+
+You are very confident. Skipping...
+==> Correct: True
+Acc: 0.7143; Majority vote acc: 0.7143; Limit acc: 0.7857
+
+[Processing file 28; Total number of files: 200]
+
+==> Ground truth answer: 25
+==> Unfiltered answers: ['25.0', '25.0', '25.0', '25.0', '25.0', '35.0', '25.0', '5.0', '5.0', '25.0', '35.0', '-15.0', '5.0']
+==> Pre-filtered answers: ['25.0', '25.0', '25.0', '25.0', '25.0', '35.0', '25.0', '5.0', '5.0', '25.0', '35.0', '-15.0', '5.0']
+==> RC-filtered answers: []
+==> Winner answer: 25.0
+
+==> Correct: True
+Acc: 0.7241; Majority vote acc: 0.7241; Limit acc: 0.7931
+
+[Processing file 29; Total number of files: 200]
+
+==> Ground truth answer: 104
+==> Unfiltered answers: ['104.0', '104.0', '104.0', '99.0', '94.0', '104.0', '94.0', '50.0', '50.0', '50.0', '50.0']
+==> Pre-filtered answers: ['104.0', '104.0', '104.0', '99.0', '94.0', '104.0', '94.0', '50.0', '50.0', '50.0', '50.0']
+==> RC-filtered answers: []
+==> Winner answer: 104.0
+
+==> Correct: True
+Acc: 0.7333; Majority vote acc: 0.7333; Limit acc: 0.8000
+
+[Processing file 30; Total number of files: 200]
+
+==> Ground truth answer: 109
+==> Unfiltered answers: ['22.23', '22.23', '16.23', '109.0', '110.0', '87.0', '11.0', '25.0', '10.0', '22.0', '22.0', '88.0']
+==> Pre-filtered answers: ['22.23', '22.23', '16.23', '109.0', '110.0', '87.0', '11.0', '25.0', '10.0', '22.0', '22.0', '88.0']
+==> RC-filtered answers: []
+==> Winner answer: 22.23
+
+==> Correct: False
+Acc: 0.7097; Majority vote acc: 0.7097; Limit acc: 0.8065
+
+[Processing file 31; Total number of files: 200]
+
+==> Ground truth answer: 80
+==> Unfiltered answers: ['90.0', '80.0', '80.0']
+==> Pre-filtered answers: ['90.0', '80.0', '80.0']
+==> RC-filtered answers: ['90.0']
+==> Winner answer: 90.0
+
+==> Correct: False
+Acc: 0.6875; Majority vote acc: 0.7188; Limit acc: 0.8125
+
+[Processing file 32; Total number of files: 200]
+
+You are very confident. Skipping...
+==> Correct: True
+Acc: 0.6970; Majority vote acc: 0.7273; Limit acc: 0.8182
+
+[Processing file 33; Total number of files: 200]
+
+Well, no correct answer in candidates. Skipping...
+==> Correct: False
+Acc: 0.6765; Majority vote acc: 0.7059; Limit acc: 0.7941
+
+[Processing file 34; Total number of files: 200]
+
+==> Ground truth answer: 23
+==> Unfiltered answers: ['23.0', '23.0', '23.0', '23.0', '23.0', '23.0', '23.0', '23.0', '23.0', '2.0']
+==> Pre-filtered answers: ['23.0', '23.0', '23.0', '23.0', '23.0', '23.0', '23.0', '23.0', '23.0', '2.0']
+==> RC-filtered answers: ['23.0', '2.0']
+==> Confidence: defaultdict(<class 'float'>, {'23.0': 0.5, '2.0': 0.5})
+==> Survival rates: {'23.0': 0.1, '2.0': 1.0}
+==> Scores: {'23.0': 0.6, '2.0': 1.5}
+==> Winner answer: 2.0
+==> Correct: False
+Acc: 0.6571; Majority vote acc: 0.7143; Limit acc: 0.8000
+
+[Processing file 35; Total number of files: 200]
+
+You are very confident. Skipping...
+==> Correct: True
+Acc: 0.6667; Majority vote acc: 0.7222; Limit acc: 0.8056
+
+[Processing file 36; Total number of files: 200]
+
+You are very confident. Skipping...
+==> Correct: True
+Acc: 0.6757; Majority vote acc: 0.7297; Limit acc: 0.8108
+
+[Processing file 37; Total number of files: 200]
+
+==> Ground truth answer: 2
+==> Unfiltered answers: ['2.0', '35.0', '2.0', '5.0', '13.0', '5.0']
+==> Pre-filtered answers: ['2.0', '35.0', '2.0', '5.0', '13.0', '5.0']
+==> RC-filtered answers: []
+==> Winner answer: 5.0
+
+==> Correct: False
+Acc: 0.6579; Majority vote acc: 0.7105; Limit acc: 0.8158
+
+[Processing file 38; Total number of files: 200]
+
+==> Ground truth answer: 10
+==> Unfiltered answers: ['6.66', '3.0', '10.0', '20.0', '60.0', '20.0', '20.0']
+==> Pre-filtered answers: ['6.66', '3.0', '10.0', '20.0', '60.0', '20.0', '20.0']
+==> RC-filtered answers: []
+==> Winner answer: 20.0
+
+==> Correct: False
+Acc: 0.6410; Majority vote acc: 0.6923; Limit acc: 0.8205
+
+[Processing file 39; Total number of files: 200]
+
+Well, no correct answer in candidates. Skipping...
+==> Correct: False
+Acc: 0.6250; Majority vote acc: 0.6750; Limit acc: 0.8000
+
+[Processing file 40; Total number of files: 200]
+
+==> Ground truth answer: 8
+==> Unfiltered answers: ['8.0', '2.0', '8.0', '8.0', '8.0', '8.0', '8.0', '8.0', '8.0', '8.0']
+==> Pre-filtered answers: ['8.0', '2.0', '8.0', '8.0', '8.0', '8.0', '8.0', '8.0', '8.0', '8.0']
+==> RC-filtered answers: ['8.0']
+==> Winner answer: 8.0
+
+==> Correct: True
+Acc: 0.6341; Majority vote acc: 0.6829; Limit acc: 0.8049
+
+[Processing file 41; Total number of files: 200]
+
+Well, no correct answer in candidates. Skipping...
+==> Correct: False
+Acc: 0.6190; Majority vote acc: 0.6667; Limit acc: 0.7857
+
+[Processing file 42; Total number of files: 200]
+
+You are very confident. Skipping...
+==> Correct: True
+Acc: 0.6279; Majority vote acc: 0.6744; Limit acc: 0.7907
+
+[Processing file 43; Total number of files: 200]
+
+Well, no correct answer in candidates. Skipping...
+==> Correct: False
+Acc: 0.6136; Majority vote acc: 0.6591; Limit acc: 0.7727
+
+[Processing file 44; Total number of files: 200]
+
+==> Ground truth answer: 20
+==> Unfiltered answers: ['20.0', '20.0', '-160.0', '-160.0', '30.0', '30.0', '30.0', '30.0', '30.0']
+==> Pre-filtered answers: ['20.0', '20.0', '-160.0', '-160.0', '30.0', '30.0', '30.0', '30.0', '30.0']
+==> RC-filtered answers: ['20.0']
+==> Winner answer: 20.0
+
+==> Correct: True
+Acc: 0.6222; Majority vote acc: 0.6444; Limit acc: 0.7778
+
+[Processing file 45; Total number of files: 200]
+
+Well, no correct answer in candidates. Skipping...
+==> Correct: False
+Acc: 0.6087; Majority vote acc: 0.6304; Limit acc: 0.7609
+
+[Processing file 46; Total number of files: 200]
+
+Well, no correct answer in candidates. Skipping...
+==> Correct: False
+Acc: 0.5957; Majority vote acc: 0.6170; Limit acc: 0.7447
+
+[Processing file 47; Total number of files: 200]
+
+==> Ground truth answer: 800
+==> Unfiltered answers: ['220.0', '800.0', '500.0', '500.0', '500.0', '500.0']
+==> Pre-filtered answers: ['220.0', '800.0', '500.0', '500.0', '500.0', '500.0']
+==> RC-filtered answers: []
+==> Winner answer: 500.0
+
+==> Correct: False
+Acc: 0.5833; Majority vote acc: 0.6042; Limit acc: 0.7500
+
+[Processing file 48; Total number of files: 200]
+
+==> Ground truth answer: 8
+==> Unfiltered answers: ['8.0', '8.0', '8.0', '8.0', '8.0', '8.0', '12.0', '2.0', '2.0', '6.0', '6.0', '6.0', '6.0']
+==> Pre-filtered answers: ['8.0', '8.0', '8.0', '8.0', '8.0', '8.0', '12.0', '2.0', '2.0', '6.0', '6.0', '6.0', '6.0']
+==> RC-filtered answers: ['8.0']
+==> Winner answer: 8.0
+
+==> Correct: True
+Acc: 0.5918; Majority vote acc: 0.6122; Limit acc: 0.7551
+
+[Processing file 49; Total number of files: 200]
+
+==> Ground truth answer: 30
+==> Unfiltered answers: ['30.0', '30.0', '30.0', '30.0', '90.0', '30.0', '22.5']
+==> Pre-filtered answers: ['30.0', '30.0', '30.0', '30.0', '90.0', '30.0', '22.5']
+==> RC-filtered answers: ['30.0', '90.0']
+==> Confidence: defaultdict(<class 'float'>, {'30.0': 0.5, '90.0': 0.5})
+==> Survival rates: {'30.0': 0.16666666666666666, '90.0': 1.0}
+==> Scores: {'30.0': 0.6666666666666666, '90.0': 1.5}
+==> Winner answer: 90.0
+==> Correct: False
+Acc: 0.5800; Majority vote acc: 0.6200; Limit acc: 0.7600
+
+[Processing file 50; Total number of files: 200]
+
+==> Ground truth answer: 294
+==> Unfiltered answers: ['294.0', '3528.0', '147.0', '294.0', '294.0', '147.0', '147.0', '3528.0', '1764.0', '147.0']
+==> Pre-filtered answers: ['294.0', '3528.0', '147.0', '294.0', '294.0', '147.0', '147.0', '3528.0', '1764.0', '147.0']
+==> RC-filtered answers: []
+==> Winner answer: 294.0
+
+==> Correct: True
+Acc: 0.5882; Majority vote acc: 0.6275; Limit acc: 0.7647
+
+[Processing file 51; Total number of files: 200]
+
+==> Ground truth answer: 5
+==> Unfiltered answers: ['5.0', '5.0', '5.0', '6.0', '8.0', '4.0', '4.0', '4.0', '4.0', '4.0', '4.0', '4.0', '5.0', '6.0']
+==> Pre-filtered answers: ['5.0', '5.0', '5.0', '6.0', '8.0', '4.0', '4.0', '4.0', '4.0', '4.0', '4.0', '4.0', '5.0', '6.0']
+==> RC-filtered answers: []
+==> Winner answer: 4.0
+
+==> Correct: False
+Acc: 0.5769; Majority vote acc: 0.6154; Limit acc: 0.7692
+
+[Processing file 52; Total number of files: 200]
+
+==> Ground truth answer: 15
+==> Unfiltered answers: ['30.0', '30.0', '15.0', '15.0', '15.0', '7.5']
+==> Pre-filtered answers: ['30.0', '30.0', '15.0', '15.0', '15.0', '7.5']
+==> RC-filtered answers: []
+==> Winner answer: 30.0
+
+==> Correct: False
+Acc: 0.5660; Majority vote acc: 0.6038; Limit acc: 0.7736
+
+[Processing file 53; Total number of files: 200]
+
+==> Ground truth answer: 40
+==> Unfiltered answers: ['40.0', '40.0', '40.0', '240.0', '40.0', '240.0', '240.0', '240.0', '240.0']
+==> Pre-filtered answers: ['40.0', '40.0', '40.0', '240.0', '40.0', '240.0', '240.0', '240.0', '240.0']
+==> RC-filtered answers: ['240.0']
+==> Winner answer: 240.0
+
+==> Correct: False
+Acc: 0.5556; Majority vote acc: 0.6111; Limit acc: 0.7778
+
+[Processing file 54; Total number of files: 200]
+
+Well, no correct answer in candidates. Skipping...
+==> Correct: False
+Acc: 0.5455; Majority vote acc: 0.6000; Limit acc: 0.7636
+
+[Processing file 55; Total number of files: 200]
+
+You are very confident. Skipping...
+==> Correct: True
+Acc: 0.5536; Majority vote acc: 0.6071; Limit acc: 0.7679
+
+[Processing file 56; Total number of files: 200]
+
+You are very confident. Skipping...
+==> Correct: True
+Acc: 0.5614; Majority vote acc: 0.6140; Limit acc: 0.7719
+
+[Processing file 57; Total number of files: 200]
+
+==> Ground truth answer: 83
+==> Unfiltered answers: ['83.0', '250.0', '250.0', '333.0', '333.0']
+==> Pre-filtered answers: ['83.0', '250.0', '250.0', '333.0', '333.0']
+==> RC-filtered answers: ['83.0']
+==> Winner answer: 83.0
+
+==> Correct: True
+Acc: 0.5690; Majority vote acc: 0.6034; Limit acc: 0.7759
+
+[Processing file 58; Total number of files: 200]
+
+==> Ground truth answer: 57
+==> Unfiltered answers: ['57.0', '57.0', '57.0', '54.0', '47.0', '47.0', '47.0']
+==> Pre-filtered answers: ['57.0', '57.0', '57.0', '54.0', '47.0', '47.0', '47.0']
+==> RC-filtered answers: []
+==> Winner answer: 57.0
+
+==> Correct: True
+Acc: 0.5763; Majority vote acc: 0.6102; Limit acc: 0.7797
+
+[Processing file 59; Total number of files: 200]
+
+==> Ground truth answer: 187
+==> Unfiltered answers: ['187.0', '187.0', '187.0', '187.0', '187.0', '187.0', '187.0', '187.0', '187.0', '134.0', '187.0']
+==> Pre-filtered answers: ['187.0', '187.0', '187.0', '187.0', '187.0', '187.0', '187.0', '187.0', '187.0', '134.0', '187.0']
+==> RC-filtered answers: ['187.0', '187.0', '187.0']
+==> Confidence: defaultdict(<class 'float'>, {'187.0': 1.0})
+==> Survival rates: {'187.0': 0.25}
+==> Scores: {'187.0': 1.25}
+==> Winner answer: 187.0
+==> Correct: True
+Acc: 0.5833; Majority vote acc: 0.6167; Limit acc: 0.7833
+
+[Processing file 60; Total number of files: 200]
+
+==> Ground truth answer: 17
+==> Unfiltered answers: ['17.0', '17.0', '17.0', '20.0', '20.0', '18.0', '18.0', '5.0']
+==> Pre-filtered answers: ['17.0', '17.0', '17.0', '20.0', '20.0', '18.0', '18.0', '5.0']
+==> RC-filtered answers: []
+==> Winner answer: 17.0
+
+==> Correct: True
+Acc: 0.5902; Majority vote acc: 0.6230; Limit acc: 0.7869
+
+[Processing file 61; Total number of files: 200]
+
+==> Ground truth answer: 1430
+==> Unfiltered answers: ['1430.0', '1430.0', '1430.0', '1430.0', '1430.0', '1380.0']
+==> Pre-filtered answers: ['1430.0', '1430.0', '1430.0', '1430.0', '1430.0', '1380.0']
+==> RC-filtered answers: ['1430.0', '1430.0']
+==> Confidence: defaultdict(<class 'float'>, {'1430.0': 1.0})
+==> Survival rates: {'1430.0': 0.42857142857142855}
+==> Scores: {'1430.0': 1.4285714285714286}
+==> Winner answer: 1430.0
+==> Correct: True
+Acc: 0.5968; Majority vote acc: 0.6290; Limit acc: 0.7903
+
+[Processing file 62; Total number of files: 200]
+
+Well, no correct answer in candidates. Skipping...
+==> Correct: False
+Acc: 0.5873; Majority vote acc: 0.6190; Limit acc: 0.7778
+
+[Processing file 63; Total number of files: 200]
+
+==> Ground truth answer: 1596
+==> Unfiltered answers: ['1596.0', '756.0', '266.0', '266.0', '266.0', '966.0', '1596.0', '1596.0']
+==> Pre-filtered answers: ['1596.0', '756.0', '266.0', '266.0', '266.0', '966.0', '1596.0', '1596.0']
+==> RC-filtered answers: []
+==> Winner answer: 266.0
+
+==> Correct: False
+Acc: 0.5781; Majority vote acc: 0.6094; Limit acc: 0.7812
+
+[Processing file 64; Total number of files: 200]
+
+==> Ground truth answer: 300
+==> Unfiltered answers: ['300.0', '300.0', '200.0', '300.0', '300.0', '200.0', '200.0', '300.0', '300.0', '300.0', '300.0', '4.0', '4.0', '8.0', '32.0', '32.0', '32.0']
+==> Pre-filtered answers: ['300.0', '300.0', '200.0', '300.0', '300.0', '200.0', '200.0', '300.0', '300.0', '300.0', '300.0', '4.0', '4.0', '8.0', '32.0', '32.0', '32.0']
+==> RC-filtered answers: ['300.0']
+==> Winner answer: 300.0
+
+==> Correct: True
+Acc: 0.5846; Majority vote acc: 0.6154; Limit acc: 0.7846
+
+[Processing file 65; Total number of files: 200]
+
+==> Ground truth answer: 36
+==> Unfiltered answers: ['24.0', '12.0', '36.0', '12.0', '12.0', '12.0', '36.0', '36.0']
+==> Pre-filtered answers: ['24.0', '12.0', '36.0', '12.0', '12.0', '12.0', '36.0', '36.0']
+==> RC-filtered answers: ['36.0', '36.0', '36.0']
+==> Confidence: defaultdict(<class 'float'>, {'36.0': 1.0})
+==> Survival rates: {'36.0': 1.0}
+==> Scores: {'36.0': 2.0}
+==> Winner answer: 36.0
+==> Correct: True
+Acc: 0.5909; Majority vote acc: 0.6061; Limit acc: 0.7879
+
+[Processing file 66; Total number of files: 200]
+
+==> Ground truth answer: 48
+==> Unfiltered answers: ['44.0', '48.0', '44.0', '48.0', '40.0', '48.0', '48.0', '48.0', '48.0', '48.0', '48.0', '48.0', '48.0', '48.0']
+==> Pre-filtered answers: ['44.0', '48.0', '44.0', '48.0', '40.0', '48.0', '48.0', '48.0', '48.0', '48.0', '48.0', '48.0', '48.0', '48.0']
+==> RC-filtered answers: ['48.0', '48.0']
+==> Confidence: defaultdict(<class 'float'>, {'48.0': 1.0})
+==> Survival rates: {'48.0': 0.23076923076923078}
+==> Scores: {'48.0': 1.2307692307692308}
+==> Winner answer: 48.0
+==> Correct: True
+Acc: 0.5970; Majority vote acc: 0.6119; Limit acc: 0.7910
+
+[Processing file 67; Total number of files: 200]
+
+==> Ground truth answer: 595
+==> Unfiltered answers: ['600.0', '280.0', '175.0', '600.0', '600.0', '600.0', '600.0', '600.0', '600.0', '600.0', '595.0', '600.0', '600.0', '600.0', '595.0', '140.0']
+==> Pre-filtered answers: ['600.0', '280.0', '175.0', '600.0', '600.0', '600.0', '600.0', '600.0', '600.0', '600.0', '595.0', '600.0', '600.0', '600.0', '595.0', '140.0']
+==> RC-filtered answers: []
+==> Winner answer: 600.0
+
+==> Correct: False
+Acc: 0.5882; Majority vote acc: 0.6029; Limit acc: 0.7941
+
+[Processing file 68; Total number of files: 200]
+
+==> Ground truth answer: 36
+==> Unfiltered answers: ['24.0', '24.0', '24.0', '12.0', '15.0', '12.0', '12.0', '12.0', '12.0', '12.0', '30.0', '30.0', '30.0', '30.0', '30.0', '30.0', '24.0', '36.0', '24.0', '12.0', '12.0']
+==> Pre-filtered answers: ['24.0', '24.0', '24.0', '12.0', '15.0', '12.0', '12.0', '12.0', '12.0', '12.0', '30.0', '30.0', '30.0', '30.0', '30.0', '30.0', '24.0', '36.0', '24.0', '12.0', '12.0']
+==> RC-filtered answers: ['36.0']
+==> Winner answer: 36.0
+
+==> Correct: True
+Acc: 0.5942; Majority vote acc: 0.5942; Limit acc: 0.7971
+
+[Processing file 69; Total number of files: 200]
+
+You are very confident. Skipping...
+==> Correct: True
+Acc: 0.6000; Majority vote acc: 0.6000; Limit acc: 0.8000
+
+[Processing file 70; Total number of files: 200]
+
+Well, no correct answer in candidates. Skipping...
+==> Correct: False
+Acc: 0.5915; Majority vote acc: 0.5915; Limit acc: 0.7887
+
+[Processing file 71; Total number of files: 200]
+
+==> Ground truth answer: 60
+==> Unfiltered answers: ['20.0', '60.0', '60.0', '60.0', '60.0', '60.0', '60.0', '40.0', '60.0', '60.0', '60.0', '60.0']
+==> Pre-filtered answers: ['20.0', '60.0', '60.0', '60.0', '60.0', '60.0', '60.0', '40.0', '60.0', '60.0', '60.0', '60.0']
+==> RC-filtered answers: ['60.0', '60.0', '40.0', '60.0', '60.0']
+==> Confidence: defaultdict(<class 'float'>, {'60.0': 0.8, '40.0': 0.2})
+==> Survival rates: {'60.0': 0.4, '40.0': 1.0}
+==> Scores: {'60.0': 1.2000000000000002, '40.0': 1.2}
+==> Winner answer: 60.0
+==> Correct: True
+Acc: 0.5972; Majority vote acc: 0.5972; Limit acc: 0.7917
+
+[Processing file 72; Total number of files: 200]
+
+==> Ground truth answer: 221
+==> Unfiltered answers: ['221.0', '221.0', '221.0', '221.0', '221.0', '161.0', '161.0', '161.0', '161.0', '221.0', '221.0', '221.0']
+==> Pre-filtered answers: ['221.0', '221.0', '221.0', '221.0', '221.0', '161.0', '161.0', '161.0', '161.0', '221.0', '221.0', '221.0']
+==> RC-filtered answers: ['221.0', '221.0', '221.0', '221.0', '221.0', '221.0']
+==> Confidence: defaultdict(<class 'float'>, {'221.0': 1.0})
+==> Survival rates: {'221.0': 0.75}
+==> Scores: {'221.0': 1.75}
+==> Winner answer: 221.0
+==> Correct: True
+Acc: 0.6027; Majority vote acc: 0.6027; Limit acc: 0.7945
+
+[Processing file 73; Total number of files: 200]
+
+==> Ground truth answer: 255
+==> Unfiltered answers: ['51.0', '51.0', '3.0', '255.0', '765.0', '255.0']
+==> Pre-filtered answers: ['51.0', '51.0', '3.0', '255.0', '765.0', '255.0']
+==> RC-filtered answers: []
+==> Winner answer: 51.0
+
+==> Correct: False
+Acc: 0.5946; Majority vote acc: 0.5946; Limit acc: 0.7973
+
+[Processing file 74; Total number of files: 200]
+
+Well, no correct answer in candidates. Skipping...
+==> Correct: False
+Acc: 0.5867; Majority vote acc: 0.5867; Limit acc: 0.7867
+
+[Processing file 75; Total number of files: 200]
+
+Well, no correct answer in candidates. Skipping...
+==> Correct: False
+Acc: 0.5789; Majority vote acc: 0.5789; Limit acc: 0.7763
+
+[Processing file 76; Total number of files: 200]
+
+==> Ground truth answer: 5
+==> Unfiltered answers: ['5.0', '5.0', '2.0', '2.0', '5.0']
+==> Pre-filtered answers: ['5.0', '5.0', '2.0', '2.0', '5.0']
+==> RC-filtered answers: ['2.0']
+==> Winner answer: 2.0
+
+==> Correct: False
+Acc: 0.5714; Majority vote acc: 0.5844; Limit acc: 0.7792
+
+[Processing file 77; Total number of files: 200]
+
+==> Ground truth answer: 100
+==> Unfiltered answers: ['200.0', '100.0', '400.0', '200.0', '100.0', '50.0', '100.0', '100.0', '25.0', '50.0', '-50.0', '2.0']
+==> Pre-filtered answers: ['200.0', '100.0', '400.0', '200.0', '100.0', '50.0', '100.0', '100.0', '25.0', '50.0', '-50.0', '2.0']
+==> RC-filtered answers: ['100.0']
+==> Winner answer: 100.0
+
+==> Correct: True
+Acc: 0.5769; Majority vote acc: 0.5897; Limit acc: 0.7821
+
+[Processing file 78; Total number of files: 200]
+
+==> Ground truth answer: 6
+==> Unfiltered answers: ['27.0', '15.0', '6.0', '15.0', '1.0', '6.0', '15.0', '3.0', '3.0', '10.0']
+==> Pre-filtered answers: ['27.0', '15.0', '6.0', '15.0', '1.0', '6.0', '15.0', '3.0', '3.0', '10.0']
+==> RC-filtered answers: ['6.0']
+==> Winner answer: 6.0
+
+==> Correct: True
+Acc: 0.5823; Majority vote acc: 0.5823; Limit acc: 0.7848
+
+[Processing file 79; Total number of files: 200]
+
+==> Ground truth answer: 70
+==> Unfiltered answers: ['70.0', '70.0', '70.0', '70.0', '70.0', '70.0', '70.0', '30.0', '70.0', '70.0', '70.0', '70.0', '70.0', '70.0', '70.0', '70.0', '70.0', '70.0']
+==> Pre-filtered answers: ['70.0', '70.0', '70.0', '70.0', '70.0', '70.0', '70.0', '30.0', '70.0', '70.0', '70.0', '70.0', '70.0', '70.0', '70.0', '70.0', '70.0', '70.0']
+==> RC-filtered answers: ['70.0', '70.0', '70.0', '70.0', '70.0', '70.0', '70.0', '70.0', '70.0', '70.0', '70.0', '70.0']
+==> Confidence: defaultdict(<class 'float'>, {'70.0': 1.0})
+==> Survival rates: {'70.0': 0.6666666666666666}
+==> Scores: {'70.0': 1.6666666666666665}
+==> Winner answer: 70.0
+==> Correct: True
+Acc: 0.5875; Majority vote acc: 0.5875; Limit acc: 0.7875
+
+[Processing file 80; Total number of files: 200]
+
+==> Ground truth answer: 10
+==> Unfiltered answers: ['14.0', '14.0', '14.0', '10.0', '10.0', '10.0', '10.0']
+==> Pre-filtered answers: ['14.0', '14.0', '14.0', '10.0', '10.0', '10.0', '10.0']
+==> RC-filtered answers: ['10.0']
+==> Winner answer: 10.0
+
+==> Correct: True
+Acc: 0.5926; Majority vote acc: 0.5802; Limit acc: 0.7901
+
+[Processing file 81; Total number of files: 200]
+
+==> Ground truth answer: 17
+==> Unfiltered answers: ['17.0', '17.0', '17.0', '17.0', '17.0', '17.0', '17.0', '17.0', '17.0', '17.0', '17.0', '17.0', '17.0', '17.0', '7.0', '7.0', '7.0', '7.0', '17.0', '17.0']
+==> Pre-filtered answers: ['17.0', '17.0', '17.0', '17.0', '17.0', '17.0', '17.0', '17.0', '17.0', '17.0', '17.0', '17.0', '17.0', '17.0', '7.0', '7.0', '7.0', '7.0', '17.0', '17.0']
+==> RC-filtered answers: ['17.0', '17.0', '17.0', '17.0', '17.0', '17.0', '17.0', '17.0', '17.0', '17.0']
+==> Confidence: defaultdict(<class 'float'>, {'17.0': 1.0})
+==> Survival rates: {'17.0': 0.6666666666666666}
+==> Scores: {'17.0': 1.6666666666666665}
+==> Winner answer: 17.0
+==> Correct: True
+Acc: 0.5976; Majority vote acc: 0.5854; Limit acc: 0.7927
+
+[Processing file 82; Total number of files: 200]
+
+==> Ground truth answer: 623
+==> Unfiltered answers: ['623.0', '623.0', '500.0', '623.0', '623.0', '623.0', '623.0', '623.0', '623.0', '3.0']
+==> Pre-filtered answers: ['623.0', '623.0', '500.0', '623.0', '623.0', '623.0', '623.0', '623.0', '623.0', '3.0']
+==> RC-filtered answers: ['623.0', '623.0', '623.0', '623.0', '623.0', '623.0']
+==> Confidence: defaultdict(<class 'float'>, {'623.0': 1.0})
+==> Survival rates: {'623.0': 0.7}
+==> Scores: {'623.0': 1.7}
+==> Winner answer: 623.0
+==> Correct: True
+Acc: 0.6024; Majority vote acc: 0.5904; Limit acc: 0.7952
+
+[Processing file 83; Total number of files: 200]
+
+You are very confident. Skipping...
+==> Correct: True
+Acc: 0.6071; Majority vote acc: 0.5952; Limit acc: 0.7976
+
+[Processing file 84; Total number of files: 200]
+
+Well, no correct answer in candidates. Skipping...
+==> Correct: False
+Acc: 0.6000; Majority vote acc: 0.5882; Limit acc: 0.7882
+
+[Processing file 85; Total number of files: 200]
+
+You are very confident. Skipping...
+==> Correct: True
+Acc: 0.6047; Majority vote acc: 0.5930; Limit acc: 0.7907
+
+[Processing file 86; Total number of files: 200]
+
+You are very confident. Skipping...
+==> Correct: True
+Acc: 0.6092; Majority vote acc: 0.5977; Limit acc: 0.7931
+
+[Processing file 87; Total number of files: 200]
+
+Well, no correct answer in candidates. Skipping...
+==> Correct: False
+Acc: 0.6023; Majority vote acc: 0.5909; Limit acc: 0.7841
+
+[Processing file 88; Total number of files: 200]
+
+Well, no correct answer in candidates. Skipping...
+==> Correct: False
+Acc: 0.5955; Majority vote acc: 0.5843; Limit acc: 0.7753
+
+[Processing file 89; Total number of files: 200]
+
+==> Ground truth answer: 24
+==> Unfiltered answers: ['24.0', '18.0', '24.0', '18.0', '18.0']
+==> Pre-filtered answers: ['24.0', '18.0', '24.0', '18.0', '18.0']
+==> RC-filtered answers: []
+==> Winner answer: 18.0
+
+==> Correct: False
+Acc: 0.5889; Majority vote acc: 0.5778; Limit acc: 0.7778
+
+[Processing file 90; Total number of files: 200]
+
+You are very confident. Skipping...
+==> Correct: True
+Acc: 0.5934; Majority vote acc: 0.5824; Limit acc: 0.7802
+
+[Processing file 91; Total number of files: 200]
+
+==> Ground truth answer: 28
+==> Unfiltered answers: ['24.0', '28.0', '28.0', '28.0']
+==> Pre-filtered answers: ['24.0', '28.0', '28.0', '28.0']
+==> RC-filtered answers: ['28.0']
+==> Winner answer: 28.0
+
+==> Correct: True
+Acc: 0.5978; Majority vote acc: 0.5870; Limit acc: 0.7826
+
+[Processing file 92; Total number of files: 200]
+
+Well, no correct answer in candidates. Skipping...
+==> Correct: False
+Acc: 0.5914; Majority vote acc: 0.5806; Limit acc: 0.7742
+
+[Processing file 93; Total number of files: 200]
+
+==> Ground truth answer: 36
+==> Unfiltered answers: ['36.0', '36.0', '36.0', '32.4', '32.4', '32.4', '36.0']
+==> Pre-filtered answers: ['36.0', '36.0', '36.0', '32.4', '32.4', '32.4', '36.0']
+==> RC-filtered answers: []
+==> Winner answer: 36.0
+
+==> Correct: True
+Acc: 0.5957; Majority vote acc: 0.5851; Limit acc: 0.7766
+
+[Processing file 94; Total number of files: 200]
+
+Well, no correct answer in candidates. Skipping...
+==> Correct: False
+Acc: 0.5895; Majority vote acc: 0.5789; Limit acc: 0.7684
+
+[Processing file 95; Total number of files: 200]
+
+==> Ground truth answer: 40
+==> Unfiltered answers: ['40.0', '1.0', '40.0', '67.0', '67.0']
+==> Pre-filtered answers: ['40.0', '1.0', '40.0', '67.0', '67.0']
+==> RC-filtered answers: ['67.0']
+==> Winner answer: 67.0
+
+==> Correct: False
+Acc: 0.5833; Majority vote acc: 0.5833; Limit acc: 0.7708
+
+[Processing file 96; Total number of files: 200]
+
+You are very confident. Skipping...
+==> Correct: True
+Acc: 0.5876; Majority vote acc: 0.5876; Limit acc: 0.7732
+
+[Processing file 97; Total number of files: 200]
+
+Well, no correct answer in candidates. Skipping...
+==> Correct: False
+Acc: 0.5816; Majority vote acc: 0.5816; Limit acc: 0.7653
+
+[Processing file 98; Total number of files: 200]
+
+==> Ground truth answer: 5
+==> Unfiltered answers: ['10.0', '25.0', '5.0']
+==> Pre-filtered answers: ['10.0', '25.0', '5.0']
+==> RC-filtered answers: []
+==> Winner answer: 10.0
+
+==> Correct: False
+Acc: 0.5758; Majority vote acc: 0.5758; Limit acc: 0.7677
+
+[Processing file 99; Total number of files: 200]
+
+==> Ground truth answer: 58
+==> Unfiltered answers: ['58.0', '58.0', '58.0', '58.0', '58.0', '58.0', '58.0', '40.0', '40.0', '40.0', '17.0']
+==> Pre-filtered answers: ['58.0', '58.0', '58.0', '58.0', '58.0', '58.0', '58.0', '40.0', '40.0', '40.0', '17.0']
+==> RC-filtered answers: ['58.0', '58.0', '58.0']
+==> Confidence: defaultdict(<class 'float'>, {'58.0': 1.0})
+==> Survival rates: {'58.0': 0.5}
+==> Scores: {'58.0': 1.5}
+==> Winner answer: 58.0
+==> Correct: True
+Acc: 0.5800; Majority vote acc: 0.5800; Limit acc: 0.7700
+
+[Processing file 100; Total number of files: 200]
+
+Well, no correct answer in candidates. Skipping...
+==> Correct: False
+Acc: 0.5743; Majority vote acc: 0.5743; Limit acc: 0.7624
+
+[Processing file 101; Total number of files: 200]
+
+Well, no correct answer in candidates. Skipping...
+==> Correct: False
+Acc: 0.5686; Majority vote acc: 0.5686; Limit acc: 0.7549
+
+[Processing file 102; Total number of files: 200]
+
+Well, no correct answer in candidates. Skipping...
+==> Correct: False
+Acc: 0.5631; Majority vote acc: 0.5631; Limit acc: 0.7476
+
+[Processing file 103; Total number of files: 200]
+
+==> Ground truth answer: 140
+==> Unfiltered answers: ['140.0', '60.0', '140.0', '15.0', '30.0', '30.0', '30.0']
+==> Pre-filtered answers: ['140.0', '60.0', '140.0', '15.0', '30.0', '30.0', '30.0']
+==> RC-filtered answers: []
+==> Winner answer: 140.0
+
+==> Correct: True
+Acc: 0.5673; Majority vote acc: 0.5673; Limit acc: 0.7500
+
+[Processing file 104; Total number of files: 200]
+
+==> Ground truth answer: 500
+==> Unfiltered answers: ['500.0', '0.0', '0.0', '0.0', '0.0', '500.0', '500.0', '3.0', '250.0', '500.0']
+==> Pre-filtered answers: ['500.0', '0.0', '0.0', '0.0', '0.0', '500.0', '500.0', '3.0', '250.0', '500.0']
+==> RC-filtered answers: ['500.0', '500.0', '500.0']
+==> Confidence: defaultdict(<class 'float'>, {'500.0': 1.0})
+==> Survival rates: {'500.0': 0.75}
+==> Scores: {'500.0': 1.75}
+==> Winner answer: 500.0
+==> Correct: True
+Acc: 0.5714; Majority vote acc: 0.5619; Limit acc: 0.7524
+
+[Processing file 105; Total number of files: 200]
+
+==> Ground truth answer: 20
+==> Unfiltered answers: ['20.0', '20.0', '20.0', '20.0', '15.0', '20.0', '20.0', '20.0', '20.0']
+==> Pre-filtered answers: ['20.0', '20.0', '20.0', '20.0', '15.0', '20.0', '20.0', '20.0', '20.0']
+==> RC-filtered answers: ['20.0', '20.0', '20.0', '20.0', '20.0', '20.0']
+==> Confidence: defaultdict(<class 'float'>, {'20.0': 1.0})
+==> Survival rates: {'20.0': 0.7}
+==> Scores: {'20.0': 1.7}
+==> Winner answer: 20.0
+==> Correct: True
+Acc: 0.5755; Majority vote acc: 0.5660; Limit acc: 0.7547
+
+[Processing file 106; Total number of files: 200]
+
+Well, no correct answer in candidates. Skipping...
+==> Correct: False
+Acc: 0.5701; Majority vote acc: 0.5607; Limit acc: 0.7477
+
+[Processing file 107; Total number of files: 200]
+
+Well, no correct answer in candidates. Skipping...
+==> Correct: False
+Acc: 0.5648; Majority vote acc: 0.5556; Limit acc: 0.7407
+
+[Processing file 108; Total number of files: 200]
+
+Well, no correct answer in candidates. Skipping...
+==> Correct: False
+Acc: 0.5596; Majority vote acc: 0.5505; Limit acc: 0.7339
+
+[Processing file 109; Total number of files: 200]
+
+You are very confident. Skipping...
+==> Correct: True
+Acc: 0.5636; Majority vote acc: 0.5545; Limit acc: 0.7364
+
+[Processing file 110; Total number of files: 200]
+
+==> Ground truth answer: 45
+==> Unfiltered answers: ['45.0', '45.0', '45.0', '48.0', '45.0', '48.0', '48.0', '45.0', '48.0']
+==> Pre-filtered answers: ['45.0', '45.0', '45.0', '48.0', '45.0', '48.0', '48.0', '45.0', '48.0']
+==> RC-filtered answers: []
+==> Winner answer: 45.0
+
+==> Correct: True
+Acc: 0.5676; Majority vote acc: 0.5586; Limit acc: 0.7387
+
+[Processing file 111; Total number of files: 200]
+
+Well, no correct answer in candidates. Skipping...
+==> Correct: False
+Acc: 0.5625; Majority vote acc: 0.5536; Limit acc: 0.7321
+
+[Processing file 112; Total number of files: 200]
+
+==> Ground truth answer: 24
+==> Unfiltered answers: ['24.0', '24.0', '24.0', '24.0', '24.0', '48.0', '48.0', '24.0', '48.0', '48.0', '48.0', '24.0']
+==> Pre-filtered answers: ['24.0', '24.0', '24.0', '24.0', '24.0', '48.0', '48.0', '24.0', '48.0', '48.0', '48.0', '24.0']
+==> RC-filtered answers: ['24.0']
+==> Winner answer: 24.0
+
+==> Correct: True
+Acc: 0.5664; Majority vote acc: 0.5575; Limit acc: 0.7345
+
+[Processing file 113; Total number of files: 200]
+
+You are very confident. Skipping...
+==> Correct: True
+Acc: 0.5702; Majority vote acc: 0.5614; Limit acc: 0.7368
+
+[Processing file 114; Total number of files: 200]
+
+==> Ground truth answer: 6
+==> Unfiltered answers: ['6.0', '6.0', '6.0', '6.0', '6.0', '6.0', '6.0', '6.0', '15000.0']
+==> Pre-filtered answers: ['6.0', '6.0', '6.0', '6.0', '6.0', '6.0', '6.0', '6.0', '15000.0']
+==> RC-filtered answers: []
+==> Winner answer: 6.0
+
+==> Correct: True
+Acc: 0.5739; Majority vote acc: 0.5652; Limit acc: 0.7391
+
+[Processing file 115; Total number of files: 200]
+
+==> Ground truth answer: 90
+==> Unfiltered answers: ['90.0', '270.0', '10.0', '150.0', '0.0', '100.0']
+==> Pre-filtered answers: ['90.0', '270.0', '10.0', '150.0', '0.0', '100.0']
+==> RC-filtered answers: []
+==> Winner answer: 90.0
+
+==> Correct: True
+Acc: 0.5776; Majority vote acc: 0.5690; Limit acc: 0.7414
+
+[Processing file 116; Total number of files: 200]
+
+Well, no correct answer in candidates. Skipping...
+==> Correct: False
+Acc: 0.5726; Majority vote acc: 0.5641; Limit acc: 0.7350
+
+[Processing file 117; Total number of files: 200]
+
+You are very confident. Skipping...
+==> Correct: True
+Acc: 0.5763; Majority vote acc: 0.5678; Limit acc: 0.7373
+
+[Processing file 118; Total number of files: 200]
+
+==> Ground truth answer: 4
+==> Unfiltered answers: ['4.0', '10.0', '4.0', '10.0', '10.0', '50.0', '6.0', '10.0']
+==> Pre-filtered answers: ['4.0', '10.0', '4.0', '10.0', '10.0', '50.0', '6.0', '10.0']
+==> RC-filtered answers: []
+==> Winner answer: 10.0
+
+==> Correct: False
+Acc: 0.5714; Majority vote acc: 0.5630; Limit acc: 0.7395
+
+[Processing file 119; Total number of files: 200]
+
+Well, no correct answer in candidates. Skipping...
+==> Correct: False
+Acc: 0.5667; Majority vote acc: 0.5583; Limit acc: 0.7333
+
+[Processing file 120; Total number of files: 200]
+
+==> Ground truth answer: 240
+==> Unfiltered answers: ['240.0', '240.0', '240.0', '240.0', '240.0', '240.0', '240.0', '240.0', '240.0', '4.0', '150.0']
+==> Pre-filtered answers: ['240.0', '240.0', '240.0', '240.0', '240.0', '240.0', '240.0', '240.0', '240.0', '4.0', '150.0']
+==> RC-filtered answers: ['240.0', '240.0', '240.0', '240.0', '240.0']
+==> Confidence: defaultdict(<class 'float'>, {'240.0': 1.0})
+==> Survival rates: {'240.0': 0.6923076923076923}
+==> Scores: {'240.0': 1.6923076923076923}
+==> Winner answer: 240.0
+==> Correct: True
+Acc: 0.5702; Majority vote acc: 0.5620; Limit acc: 0.7355
+
+[Processing file 121; Total number of files: 200]
+
+==> Ground truth answer: 27
+==> Unfiltered answers: ['27.0', '27.0', '27.0', '27.0', '27.0', '27.0', '27.0', '27.0', '27.0', '27.0', None]
+==> Pre-filtered answers: ['27.0', '27.0', '27.0', '27.0', '27.0', '27.0', '27.0', '27.0', '27.0', '27.0']
+==> RC-filtered answers: ['27.0', '27.0', '27.0', '27.0']
+==> Confidence: defaultdict(<class 'float'>, {'27.0': 1.0})
+==> Survival rates: {'27.0': 0.3076923076923077}
+==> Scores: {'27.0': 1.3076923076923077}
+==> Winner answer: 27.0
+==> Correct: True
+Acc: 0.5738; Majority vote acc: 0.5656; Limit acc: 0.7377
+
+[Processing file 122; Total number of files: 200]
+
+Well, no correct answer in candidates. Skipping...
+==> Correct: False
+Acc: 0.5691; Majority vote acc: 0.5610; Limit acc: 0.7317
+
+[Processing file 123; Total number of files: 200]
+
+You are very confident. Skipping...
+==> Correct: True
+Acc: 0.5726; Majority vote acc: 0.5645; Limit acc: 0.7339
+
+[Processing file 124; Total number of files: 200]
+
+Well, no correct answer in candidates. Skipping...
+==> Correct: False
+Acc: 0.5680; Majority vote acc: 0.5600; Limit acc: 0.7280
+
+[Processing file 125; Total number of files: 200]
+
+==> Ground truth answer: 10
+==> Unfiltered answers: ['10.0', '10.0', '9.0', '14.0', '7.0', '9.0', '4.0']
+==> Pre-filtered answers: ['10.0', '10.0', '9.0', '14.0', '7.0', '9.0', '4.0']
+==> RC-filtered answers: ['9.0']
+==> Winner answer: 9.0
+
+==> Correct: False
+Acc: 0.5635; Majority vote acc: 0.5635; Limit acc: 0.7302
+
+[Processing file 126; Total number of files: 200]
+
+==> Ground truth answer: 82
+==> Unfiltered answers: ['44.0', '44.0', '44.0', '44.0', '82.0', '82.0', '82.0', '82.0', '82.0']
+==> Pre-filtered answers: ['44.0', '44.0', '44.0', '44.0', '82.0', '82.0', '82.0', '82.0', '82.0']
+==> RC-filtered answers: ['82.0', '82.0', '82.0', '82.0', '82.0']
+==> Confidence: defaultdict(<class 'float'>, {'82.0': 1.0})
+==> Survival rates: {'82.0': 1.0}
+==> Scores: {'82.0': 2.0}
+==> Winner answer: 82.0
+==> Correct: True
+Acc: 0.5669; Majority vote acc: 0.5669; Limit acc: 0.7323
+
+[Processing file 127; Total number of files: 200]
+
+==> Ground truth answer: 120
+==> Unfiltered answers: ['120.0', '120.0', '120.0', '50.0', '50.0', '50.0', '50.0', '1.0']
+==> Pre-filtered answers: ['120.0', '120.0', '120.0', '50.0', '50.0', '50.0', '50.0', '1.0']
+==> RC-filtered answers: ['120.0', '120.0']
+==> Confidence: defaultdict(<class 'float'>, {'120.0': 1.0})
+==> Survival rates: {'120.0': 0.75}
+==> Scores: {'120.0': 1.75}
+==> Winner answer: 120.0
+==> Correct: True
+Acc: 0.5703; Majority vote acc: 0.5703; Limit acc: 0.7344
+
+[Processing file 128; Total number of files: 200]
+
+==> Ground truth answer: 880
+==> Unfiltered answers: ['880.0', '880.0', '880.0', '880.0', '180.0', '180.0', '180.0', '160.0', '160.0', '0.0', '160.0', '160.0', '0.0']
+==> Pre-filtered answers: ['880.0', '880.0', '880.0', '880.0', '180.0', '180.0', '180.0', '160.0', '160.0', '0.0', '160.0', '160.0', '0.0']
+==> RC-filtered answers: []
+==> Winner answer: 880.0
+
+==> Correct: True
+Acc: 0.5736; Majority vote acc: 0.5736; Limit acc: 0.7364
+
+[Processing file 129; Total number of files: 200]
+
+You are very confident. Skipping...
+==> Correct: True
+Acc: 0.5769; Majority vote acc: 0.5769; Limit acc: 0.7385
+
+[Processing file 130; Total number of files: 200]
+
+You are very confident. Skipping...
+==> Correct: True
+Acc: 0.5802; Majority vote acc: 0.5802; Limit acc: 0.7405
+
+[Processing file 131; Total number of files: 200]
+
+==> Ground truth answer: 940
+==> Unfiltered answers: ['940.0', '940.0', '500.0', '940.0', '940.0', '940.0']
+==> Pre-filtered answers: ['940.0', '940.0', '500.0', '940.0', '940.0', '940.0']
+==> RC-filtered answers: ['940.0', '940.0']
+==> Confidence: defaultdict(<class 'float'>, {'940.0': 1.0})
+==> Survival rates: {'940.0': 0.2857142857142857}
+==> Scores: {'940.0': 1.2857142857142856}
+==> Winner answer: 940.0
+==> Correct: True
+Acc: 0.5833; Majority vote acc: 0.5833; Limit acc: 0.7424
+
+[Processing file 132; Total number of files: 200]
+
+==> Ground truth answer: 60
+==> Unfiltered answers: ['48.0', '84.0', '60.0', '60.0', '24.0', '48.0', '36.0', '60.0', '36.0', '60.0', '60.0', '2.0', '6.0', '6.0']
+==> Pre-filtered answers: ['48.0', '84.0', '60.0', '60.0', '24.0', '48.0', '36.0', '60.0', '36.0', '60.0', '60.0', '2.0', '6.0', '6.0']
+==> RC-filtered answers: []
+==> Winner answer: 60.0
+
+==> Correct: True
+Acc: 0.5865; Majority vote acc: 0.5865; Limit acc: 0.7444
+
+[Processing file 133; Total number of files: 200]
+
+You are very confident. Skipping...
+==> Correct: True
+Acc: 0.5896; Majority vote acc: 0.5896; Limit acc: 0.7463
+
+[Processing file 134; Total number of files: 200]
+
+==> Ground truth answer: 720
+==> Unfiltered answers: ['720.0', '720.0', '720.0', '720.0', '720.0', '720.0', '720.0', '720.0', '720.0', '720.0', '720.0', '720.0', '60.0']
+==> Pre-filtered answers: ['720.0', '720.0', '720.0', '720.0', '720.0', '720.0', '720.0', '720.0', '720.0', '720.0', '720.0', '720.0', '60.0']
+==> RC-filtered answers: ['720.0', '720.0', '720.0']
+==> Confidence: defaultdict(<class 'float'>, {'720.0': 1.0})
+==> Survival rates: {'720.0': 0.23076923076923078}
+==> Scores: {'720.0': 1.2307692307692308}
+==> Winner answer: 720.0
+==> Correct: True
+Acc: 0.5926; Majority vote acc: 0.5926; Limit acc: 0.7481
+
+[Processing file 135; Total number of files: 200]
+
+==> Ground truth answer: 40
+==> Unfiltered answers: ['55.0', '40.0', '15.0', '10.0', '45.0', '45.0', '15.0']
+==> Pre-filtered answers: ['55.0', '40.0', '15.0', '10.0', '45.0', '45.0', '15.0']
+==> RC-filtered answers: ['40.0']
+==> Winner answer: 40.0
+
+==> Correct: True
+Acc: 0.5956; Majority vote acc: 0.5882; Limit acc: 0.7500
+
+[Processing file 136; Total number of files: 200]
+
+==> Ground truth answer: 6
+==> Unfiltered answers: ['6.0', '6.0', '6.0', '6.0', '6.0', '6.0', '6.0', '6.0', '6.0', '6.0', '6.0', None, '6.0']
+==> Pre-filtered answers: ['6.0', '6.0', '6.0', '6.0', '6.0', '6.0', '6.0', '6.0', '6.0', '6.0', '6.0', '6.0']
+==> RC-filtered answers: ['6.0', '6.0', '6.0', '6.0']
+==> Confidence: defaultdict(<class 'float'>, {'6.0': 1.0})
+==> Survival rates: {'6.0': 0.3333333333333333}
+==> Scores: {'6.0': 1.3333333333333333}
+==> Winner answer: 6.0
+==> Correct: True
+Acc: 0.5985; Majority vote acc: 0.5912; Limit acc: 0.7518
+
+[Processing file 137; Total number of files: 200]
+
+==> Ground truth answer: 29
+==> Unfiltered answers: ['26.0', '26.0', '26.0', '29.0', '29.0', '29.0', '29.0', '29.0', '29.0', '29.0']
+==> Pre-filtered answers: ['26.0', '26.0', '26.0', '29.0', '29.0', '29.0', '29.0', '29.0', '29.0', '29.0']
+==> RC-filtered answers: ['26.0', '29.0', '29.0', '29.0']
+==> Confidence: defaultdict(<class 'float'>, {'26.0': 0.2, '29.0': 0.8})
+==> Survival rates: {'26.0': 0.25, '29.0': 0.4444444444444444}
+==> Scores: {'26.0': 0.45, '29.0': 1.2444444444444445}
+==> Winner answer: 29.0
+==> Correct: True
+Acc: 0.6014; Majority vote acc: 0.5942; Limit acc: 0.7536
+
+[Processing file 138; Total number of files: 200]
+
+Well, no correct answer in candidates. Skipping...
+==> Correct: False
+Acc: 0.5971; Majority vote acc: 0.5899; Limit acc: 0.7482
+
+[Processing file 139; Total number of files: 200]
+
+==> Ground truth answer: 70
+==> Unfiltered answers: ['70.0', '26.0', '26.0', '26.0', '26.0', '70.0', '2.0', '2.0', '5.5', '12.0', '14.0']
+==> Pre-filtered answers: ['70.0', '26.0', '26.0', '26.0', '26.0', '70.0', '2.0', '2.0', '5.5', '12.0', '14.0']
+==> RC-filtered answers: []
+==> Winner answer: 26.0
+
+==> Correct: False
+Acc: 0.5929; Majority vote acc: 0.5857; Limit acc: 0.7500
+
+[Processing file 140; Total number of files: 200]
+
+==> Ground truth answer: 20
+==> Unfiltered answers: ['20.0', '20.0', '20.0', '20.0', '20.0', '20.0', '20.0', '12.0']
+==> Pre-filtered answers: ['20.0', '20.0', '20.0', '20.0', '20.0', '20.0', '20.0', '12.0']
+==> RC-filtered answers: ['20.0', '20.0', '20.0']
+==> Confidence: defaultdict(<class 'float'>, {'20.0': 1.0})
+==> Survival rates: {'20.0': 0.5}
+==> Scores: {'20.0': 1.5}
+==> Winner answer: 20.0
+==> Correct: True
+Acc: 0.5957; Majority vote acc: 0.5887; Limit acc: 0.7518
+
+[Processing file 141; Total number of files: 200]
+
+Well, no correct answer in candidates. Skipping...
+==> Correct: False
+Acc: 0.5915; Majority vote acc: 0.5845; Limit acc: 0.7465
+
+[Processing file 142; Total number of files: 200]
+
+You are very confident. Skipping...
+==> Correct: True
+Acc: 0.5944; Majority vote acc: 0.5874; Limit acc: 0.7483
+
+[Processing file 143; Total number of files: 200]
+
+Well, no correct answer in candidates. Skipping...
+==> Correct: False
+Acc: 0.5903; Majority vote acc: 0.5833; Limit acc: 0.7431
+
+[Processing file 144; Total number of files: 200]
+
+==> Ground truth answer: 20
+==> Unfiltered answers: ['71.0', '35.0', '20.0']
+==> Pre-filtered answers: ['71.0', '35.0', '20.0']
+==> RC-filtered answers: []
+==> Winner answer: 71.0
+
+==> Correct: False
+Acc: 0.5862; Majority vote acc: 0.5793; Limit acc: 0.7448
+
+[Processing file 145; Total number of files: 200]
+
+==> Ground truth answer: 4000
+==> Unfiltered answers: ['333.0', '333.0', '1000.0', '333.0', '333.0', '4000.0', '4000.0', '4000.0', '333.0']
+==> Pre-filtered answers: ['333.0', '333.0', '1000.0', '333.0', '333.0', '4000.0', '4000.0', '4000.0', '333.0']
+==> RC-filtered answers: ['4000.0']
+==> Winner answer: 4000.0
+
+==> Correct: True
+Acc: 0.5890; Majority vote acc: 0.5753; Limit acc: 0.7466
+
+[Processing file 146; Total number of files: 200]
+
+Well, no correct answer in candidates. Skipping...
+==> Correct: False
+Acc: 0.5850; Majority vote acc: 0.5714; Limit acc: 0.7415
+
+[Processing file 147; Total number of files: 200]
+
+==> Ground truth answer: 75
+==> Unfiltered answers: ['75.0', '60.0', '60.0', '30.0', '30.0', '6.0']
+==> Pre-filtered answers: ['75.0', '60.0', '60.0', '30.0', '30.0', '6.0']
+==> RC-filtered answers: []
+==> Winner answer: 75.0
+
+==> Correct: True
+Acc: 0.5878; Majority vote acc: 0.5743; Limit acc: 0.7432
+
+[Processing file 148; Total number of files: 200]
+
+Well, no correct answer in candidates. Skipping...
+==> Correct: False
+Acc: 0.5839; Majority vote acc: 0.5705; Limit acc: 0.7383
+
+[Processing file 149; Total number of files: 200]
+
+==> Ground truth answer: 16
+==> Unfiltered answers: ['144.0', '16.0', '144.0', '16.0', '16.0', '16.0', '16.0', '16.0', '16.0', '16.0', '16.0', '12.0', '16.0', '12.0', '12.0', '12.0', '144.0']
+==> Pre-filtered answers: ['144.0', '16.0', '144.0', '16.0', '16.0', '16.0', '16.0', '16.0', '16.0', '16.0', '16.0', '12.0', '16.0', '12.0', '12.0', '12.0', '144.0']
+==> RC-filtered answers: ['16.0', '16.0']
+==> Confidence: defaultdict(<class 'float'>, {'16.0': 1.0})
+==> Survival rates: {'16.0': 0.2}
+==> Scores: {'16.0': 1.2}
+==> Winner answer: 16.0
+==> Correct: True
+Acc: 0.5867; Majority vote acc: 0.5733; Limit acc: 0.7400
+
+[Processing file 150; Total number of files: 200]
+
+==> Ground truth answer: 4
+==> Unfiltered answers: ['8.0', '4.0', '7.0']
+==> Pre-filtered answers: ['8.0', '4.0', '7.0']
+==> RC-filtered answers: []
+==> Winner answer: 8.0
+
+==> Correct: False
+Acc: 0.5828; Majority vote acc: 0.5695; Limit acc: 0.7417
+
+[Processing file 151; Total number of files: 200]
+
+Well, no correct answer in candidates. Skipping...
+==> Correct: False
+Acc: 0.5789; Majority vote acc: 0.5658; Limit acc: 0.7368
+
+[Processing file 152; Total number of files: 200]
+
+You are very confident. Skipping...
+==> Correct: True
+Acc: 0.5817; Majority vote acc: 0.5686; Limit acc: 0.7386
+
+[Processing file 153; Total number of files: 200]
+
+Well, no correct answer in candidates. Skipping...
+==> Correct: False
+Acc: 0.5779; Majority vote acc: 0.5649; Limit acc: 0.7338
+
+[Processing file 154; Total number of files: 200]
+
+==> Ground truth answer: 272
+==> Unfiltered answers: ['44.0', '144.0', '144.0', '272.0', '80.0', '80.0', '80.0', '80.0']
+==> Pre-filtered answers: ['44.0', '144.0', '144.0', '272.0', '80.0', '80.0', '80.0', '80.0']
+==> RC-filtered answers: ['80.0']
+==> Winner answer: 80.0
+
+==> Correct: False
+Acc: 0.5742; Majority vote acc: 0.5613; Limit acc: 0.7355
+
+[Processing file 155; Total number of files: 200]
+
+==> Ground truth answer: 280
+==> Unfiltered answers: ['3600.0', '3600.0', '3600.0', '190.0', '760.0', '280.0', '170.0', '170.0', '280.0', '3600.0']
+==> Pre-filtered answers: ['3600.0', '3600.0', '3600.0', '190.0', '760.0', '280.0', '170.0', '170.0', '280.0', '3600.0']
+==> RC-filtered answers: []
+==> Winner answer: 3600.0
+
+==> Correct: False
+Acc: 0.5705; Majority vote acc: 0.5577; Limit acc: 0.7372
+
+[Processing file 156; Total number of files: 200]
+
+==> Ground truth answer: 1400
+==> Unfiltered answers: ['1400.0', '1400.0', '1400.0', '1400.0', '1400.0', '1400.0', '1400.0', '1400.0', '1400.0', '1400.0', '1400.0', '2.0', '1400.0']
+==> Pre-filtered answers: ['1400.0', '1400.0', '1400.0', '1400.0', '1400.0', '1400.0', '1400.0', '1400.0', '1400.0', '1400.0', '1400.0', '2.0', '1400.0']
+==> RC-filtered answers: ['1400.0', '1400.0', '1400.0', '1400.0', '2.0', '1400.0']
+==> Confidence: defaultdict(<class 'float'>, {'1400.0': 0.8333333333333334, '2.0': 0.16666666666666666})
+==> Survival rates: {'1400.0': 0.4166666666666667, '2.0': 1.0}
+==> Scores: {'1400.0': 1.25, '2.0': 1.1666666666666667}
+==> Winner answer: 1400.0
+==> Correct: True
+Acc: 0.5732; Majority vote acc: 0.5605; Limit acc: 0.7389
+
+[Processing file 157; Total number of files: 200]
+
+Well, no correct answer in candidates. Skipping...
+==> Correct: False
+Acc: 0.5696; Majority vote acc: 0.5570; Limit acc: 0.7342
+
+[Processing file 158; Total number of files: 200]
+
+You are very confident. Skipping...
+==> Correct: True
+Acc: 0.5723; Majority vote acc: 0.5597; Limit acc: 0.7358
+
+[Processing file 159; Total number of files: 200]
+
+==> Ground truth answer: 15
+==> Unfiltered answers: ['15.0', '17.0', '11.0', '15.0', '3.0', '15.0', '15.0', '15.0', '15.0', '15.0', '15.0']
+==> Pre-filtered answers: ['15.0', '17.0', '11.0', '15.0', '3.0', '15.0', '15.0', '15.0', '15.0', '15.0', '15.0']
+==> RC-filtered answers: ['15.0', '15.0', '15.0', '15.0', '15.0']
+==> Confidence: defaultdict(<class 'float'>, {'15.0': 1.0})
+==> Survival rates: {'15.0': 0.6}
+==> Scores: {'15.0': 1.6}
+==> Winner answer: 15.0
+==> Correct: True
+Acc: 0.5750; Majority vote acc: 0.5625; Limit acc: 0.7375
+
+[Processing file 160; Total number of files: 200]
+
+==> Ground truth answer: 16
+==> Unfiltered answers: ['16.0', '16.0', '8.0', '16.0', '16.0', '16.0', '16.0', '16.0', '16.0', '16.0', '16.0', '16.0']
+==> Pre-filtered answers: ['16.0', '16.0', '8.0', '16.0', '16.0', '16.0', '16.0', '16.0', '16.0', '16.0', '16.0', '16.0']
+==> RC-filtered answers: ['16.0', '8.0', '16.0', '16.0', '16.0', '16.0', '16.0', '16.0', '16.0', '16.0']
+==> Confidence: defaultdict(<class 'float'>, {'16.0': 0.9166666666666666, '8.0': 0.08333333333333333})
+==> Survival rates: {'16.0': 0.7857142857142857, '8.0': 1.0}
+==> Scores: {'16.0': 1.7023809523809523, '8.0': 1.0833333333333333}
+==> Winner answer: 16.0
+==> Correct: True
+Acc: 0.5776; Majority vote acc: 0.5652; Limit acc: 0.7391
+
+[Processing file 161; Total number of files: 200]
+
+==> Ground truth answer: 32
+==> Unfiltered answers: ['34.0', '34.0', '34.0', '32.0', '13.0', '6.0', '5.0', '13.0', '34.0', '13.0']
+==> Pre-filtered answers: ['34.0', '34.0', '34.0', '32.0', '13.0', '6.0', '5.0', '13.0', '34.0', '13.0']
+==> RC-filtered answers: []
+==> Winner answer: 34.0
+
+==> Correct: False
+Acc: 0.5741; Majority vote acc: 0.5617; Limit acc: 0.7407
+
+[Processing file 162; Total number of files: 200]
+
+Well, no correct answer in candidates. Skipping...
+==> Correct: False
+Acc: 0.5706; Majority vote acc: 0.5583; Limit acc: 0.7362
+
+[Processing file 163; Total number of files: 200]
+
+==> Ground truth answer: 50
+==> Unfiltered answers: ['40.0', '40.0', '54.0', '20.0', '50.0', '40.0', '5.0']
+==> Pre-filtered answers: ['40.0', '40.0', '54.0', '20.0', '50.0', '40.0', '5.0']
+==> RC-filtered answers: []
+==> Winner answer: 40.0
+
+==> Correct: False
+Acc: 0.5671; Majority vote acc: 0.5549; Limit acc: 0.7378
+
+[Processing file 164; Total number of files: 200]
+
+You are very confident. Skipping...
+==> Correct: True
+Acc: 0.5697; Majority vote acc: 0.5576; Limit acc: 0.7394
+
+[Processing file 165; Total number of files: 200]
+
+==> Ground truth answer: 77
+==> Unfiltered answers: ['0.0', '0.0', '-23.0', '77.0', '77.0', '77.0', '77.0']
+==> Pre-filtered answers: ['0.0', '0.0', '-23.0', '77.0', '77.0', '77.0', '77.0']
+==> RC-filtered answers: []
+==> Winner answer: 77.0
+
+==> Correct: True
+Acc: 0.5723; Majority vote acc: 0.5602; Limit acc: 0.7410
+
+[Processing file 166; Total number of files: 200]
+
+You are very confident. Skipping...
+==> Correct: True
+Acc: 0.5749; Majority vote acc: 0.5629; Limit acc: 0.7425
+
+[Processing file 167; Total number of files: 200]
+
+==> Ground truth answer: 16
+==> Unfiltered answers: ['18.0', '16.0', '16.0', '14.0', '14.0', '14.0', '14.0', '14.0']
+==> Pre-filtered answers: ['18.0', '16.0', '16.0', '14.0', '14.0', '14.0', '14.0', '14.0']
+==> RC-filtered answers: []
+==> Winner answer: 14.0
+
+==> Correct: False
+Acc: 0.5714; Majority vote acc: 0.5595; Limit acc: 0.7440
+
+[Processing file 168; Total number of files: 200]
+
+==> Ground truth answer: 18
+==> Unfiltered answers: ['24.0', '24.0', '24.0', '24.0', '24.0', '18.0', '18.0', '18.0', '24.0']
+==> Pre-filtered answers: ['24.0', '24.0', '24.0', '24.0', '24.0', '18.0', '18.0', '18.0', '24.0']
+==> RC-filtered answers: ['18.0', '18.0']
+==> Confidence: defaultdict(<class 'float'>, {'18.0': 1.0})
+==> Survival rates: {'18.0': 0.75}
+==> Scores: {'18.0': 1.75}
+==> Winner answer: 18.0
+==> Correct: True
+Acc: 0.5740; Majority vote acc: 0.5562; Limit acc: 0.7456
+
+[Processing file 169; Total number of files: 200]
+
+==> Ground truth answer: 120
+==> Unfiltered answers: ['120.0', '120.0', '120.0', '100.0', '120.0', '140.0', '120.0', '120.0', None]
+==> Pre-filtered answers: ['120.0', '120.0', '120.0', '100.0', '120.0', '140.0', '120.0', '120.0']
+==> RC-filtered answers: ['100.0']
+==> Winner answer: 100.0
+
+==> Correct: False
+Acc: 0.5706; Majority vote acc: 0.5588; Limit acc: 0.7471
+
+[Processing file 170; Total number of files: 200]
+
+==> Ground truth answer: 150
+==> Unfiltered answers: ['150.0', '150.0', '150.0', '150.0', '150.0', '150.0', '150.0', '150.0', '150.0', '150.0', '150.0', '50.0']
+==> Pre-filtered answers: ['150.0', '150.0', '150.0', '150.0', '150.0', '150.0', '150.0', '150.0', '150.0', '150.0', '150.0', '50.0']
+==> RC-filtered answers: ['150.0', '150.0', '150.0', '150.0', '150.0']
+==> Confidence: defaultdict(<class 'float'>, {'150.0': 1.0})
+==> Survival rates: {'150.0': 0.5}
+==> Scores: {'150.0': 1.5}
+==> Winner answer: 150.0
+==> Correct: True
+Acc: 0.5731; Majority vote acc: 0.5614; Limit acc: 0.7485
+
+[Processing file 171; Total number of files: 200]
+
+==> Ground truth answer: 1210
+==> Unfiltered answers: ['1210.0', '1210.0', '1210.0', '1210.0', '1210.0', '30.0']
+==> Pre-filtered answers: ['1210.0', '1210.0', '1210.0', '1210.0', '1210.0', '30.0']
+==> RC-filtered answers: []
+==> Winner answer: 1210.0
+
+==> Correct: True
+Acc: 0.5756; Majority vote acc: 0.5640; Limit acc: 0.7500
+
+[Processing file 172; Total number of files: 200]
+
+==> Ground truth answer: 51
+==> Unfiltered answers: ['32.0', '32.0', '51.0', '16.0', '51.0', '23.0']
+==> Pre-filtered answers: ['32.0', '32.0', '51.0', '16.0', '51.0', '23.0']
+==> RC-filtered answers: []
+==> Winner answer: 32.0
+
+==> Correct: False
+Acc: 0.5723; Majority vote acc: 0.5607; Limit acc: 0.7514
+
+[Processing file 173; Total number of files: 200]
+
+==> Ground truth answer: 18000
+==> Unfiltered answers: ['18000.0', '18000.0', '18000.0', '18000.0', '18000.0', '1500.0', '18000.0', '1500.0', '18000.0', '12000.0', '1500.0', '18000.0', '450.0']
+==> Pre-filtered answers: ['18000.0', '18000.0', '18000.0', '18000.0', '18000.0', '1500.0', '18000.0', '1500.0', '18000.0', '12000.0', '1500.0', '18000.0', '450.0']
+==> RC-filtered answers: ['18000.0', '18000.0']
+==> Confidence: defaultdict(<class 'float'>, {'18000.0': 1.0})
+==> Survival rates: {'18000.0': 0.45454545454545453}
+==> Scores: {'18000.0': 1.4545454545454546}
+==> Winner answer: 18000.0
+==> Correct: True
+Acc: 0.5747; Majority vote acc: 0.5632; Limit acc: 0.7529
+
+[Processing file 174; Total number of files: 200]
+
+Well, no correct answer in candidates. Skipping...
+==> Correct: False
+Acc: 0.5714; Majority vote acc: 0.5600; Limit acc: 0.7486
+
+[Processing file 175; Total number of files: 200]
+
+Well, no correct answer in candidates. Skipping...
+==> Correct: False
+Acc: 0.5682; Majority vote acc: 0.5568; Limit acc: 0.7443
+
+[Processing file 176; Total number of files: 200]
+
+==> Ground truth answer: 100
+==> Unfiltered answers: ['100.0', '100.0', '100.0', '100.0', '80.0', '80.0', '100.0', '80.0', '80.0', '20.0']
+==> Pre-filtered answers: ['100.0', '100.0', '100.0', '100.0', '80.0', '80.0', '100.0', '80.0', '80.0', '20.0']
+==> RC-filtered answers: []
+==> Winner answer: 100.0
+
+==> Correct: True
+Acc: 0.5706; Majority vote acc: 0.5593; Limit acc: 0.7458
+
+[Processing file 177; Total number of files: 200]
+
+Well, no correct answer in candidates. Skipping...
+==> Correct: False
+Acc: 0.5674; Majority vote acc: 0.5562; Limit acc: 0.7416
+
+[Processing file 178; Total number of files: 200]
+
+==> Ground truth answer: 122
+==> Unfiltered answers: ['112.0', '40.0', '122.0', '122.0', '122.0', '122.0', '122.0', '122.0', '122.0', '86.0']
+==> Pre-filtered answers: ['112.0', '40.0', '122.0', '122.0', '122.0', '122.0', '122.0', '122.0', '122.0', '86.0']
+==> RC-filtered answers: []
+==> Winner answer: 122.0
+
+==> Correct: True
+Acc: 0.5698; Majority vote acc: 0.5587; Limit acc: 0.7430
+
+[Processing file 179; Total number of files: 200]
+
+You are very confident. Skipping...
+==> Correct: True
+Acc: 0.5722; Majority vote acc: 0.5611; Limit acc: 0.7444
+
+[Processing file 180; Total number of files: 200]
+
+==> Ground truth answer: 20
+==> Unfiltered answers: ['68.0', '68.0', '68.0', '20.0', '20.0']
+==> Pre-filtered answers: ['68.0', '68.0', '68.0', '20.0', '20.0']
+==> RC-filtered answers: []
+==> Winner answer: 68.0
+
+==> Correct: False
+Acc: 0.5691; Majority vote acc: 0.5580; Limit acc: 0.7459
+
+[Processing file 181; Total number of files: 200]
+
+==> Ground truth answer: 160
+==> Unfiltered answers: ['40.0', '40.0', '40.0', '80.0', '80.0', '160.0', '160.0', '160.0', '160.0', '160.0', '160.0', '160.0', '160.0']
+==> Pre-filtered answers: ['40.0', '40.0', '40.0', '80.0', '80.0', '160.0', '160.0', '160.0', '160.0', '160.0', '160.0', '160.0', '160.0']
+==> RC-filtered answers: ['160.0', '160.0', '160.0']
+==> Confidence: defaultdict(<class 'float'>, {'160.0': 1.0})
+==> Survival rates: {'160.0': 0.3333333333333333}
+==> Scores: {'160.0': 1.3333333333333333}
+==> Winner answer: 160.0
+==> Correct: True
+Acc: 0.5714; Majority vote acc: 0.5604; Limit acc: 0.7473
+
+[Processing file 182; Total number of files: 200]
+
+Well, no correct answer in candidates. Skipping...
+==> Correct: False
+Acc: 0.5683; Majority vote acc: 0.5574; Limit acc: 0.7432
+
+[Processing file 183; Total number of files: 200]
+
+==> Ground truth answer: 2
+==> Unfiltered answers: ['2.0', '2.0', '2.0', '2.0', '2.0', '2.0', '2.0', '4.0', '4.0', '4.0', '3.0', '2.0', '16.0']
+==> Pre-filtered answers: ['2.0', '2.0', '2.0', '2.0', '2.0', '2.0', '2.0', '4.0', '4.0', '4.0', '3.0', '2.0', '16.0']
+==> RC-filtered answers: ['2.0']
+==> Winner answer: 2.0
+
+==> Correct: True
+Acc: 0.5707; Majority vote acc: 0.5598; Limit acc: 0.7446
+
+[Processing file 184; Total number of files: 200]
+
+Well, no correct answer in candidates. Skipping...
+==> Correct: False
+Acc: 0.5676; Majority vote acc: 0.5568; Limit acc: 0.7405
+
+[Processing file 185; Total number of files: 200]
+
+==> Ground truth answer: 30
+==> Unfiltered answers: ['60.0', '30.0', '30.0', '30.0', '30.0', '30.0', '30.0', '3.0', '5.0', '7.0']
+==> Pre-filtered answers: ['60.0', '30.0', '30.0', '30.0', '30.0', '30.0', '30.0', '3.0', '5.0', '7.0']
+==> RC-filtered answers: ['30.0', '30.0', '30.0']
+==> Confidence: defaultdict(<class 'float'>, {'30.0': 1.0})
+==> Survival rates: {'30.0': 0.42857142857142855}
+==> Scores: {'30.0': 1.4285714285714286}
+==> Winner answer: 30.0
+==> Correct: True
+Acc: 0.5699; Majority vote acc: 0.5591; Limit acc: 0.7419
+
+[Processing file 186; Total number of files: 200]
+
+==> Ground truth answer: 5
+==> Unfiltered answers: ['3.0', '5.0', '3.0', '6.0', '18.0', '10.0', '3.0', '92.0', '24.0', '9.0', '72.0', '20.0']
+==> Pre-filtered answers: ['3.0', '5.0', '3.0', '6.0', '18.0', '10.0', '3.0', '92.0', '24.0', '9.0', '72.0', '20.0']
+==> RC-filtered answers: []
+==> Winner answer: 3.0
+
+==> Correct: False
+Acc: 0.5668; Majority vote acc: 0.5561; Limit acc: 0.7433
+
+[Processing file 187; Total number of files: 200]
+
+==> Ground truth answer: 106
+==> Unfiltered answers: ['160.0', '160.0', '106.0', '106.0', '106.0', '106.0', '106.0', '106.0', '106.0', '106.0']
+==> Pre-filtered answers: ['160.0', '160.0', '106.0', '106.0', '106.0', '106.0', '106.0', '106.0', '106.0', '106.0']
+==> RC-filtered answers: ['106.0', '106.0', '106.0', '106.0']
+==> Confidence: defaultdict(<class 'float'>, {'106.0': 1.0})
+==> Survival rates: {'106.0': 0.5555555555555556}
+==> Scores: {'106.0': 1.5555555555555556}
+==> Winner answer: 106.0
+==> Correct: True
+Acc: 0.5691; Majority vote acc: 0.5585; Limit acc: 0.7447
+
+[Processing file 188; Total number of files: 200]
+
+Well, no correct answer in candidates. Skipping...
+==> Correct: False
+Acc: 0.5661; Majority vote acc: 0.5556; Limit acc: 0.7407
+
+[Processing file 189; Total number of files: 200]
+
+Well, no correct answer in candidates. Skipping...
+==> Correct: False
+Acc: 0.5632; Majority vote acc: 0.5526; Limit acc: 0.7368
+
+[Processing file 190; Total number of files: 200]
+
+==> Ground truth answer: 360
+==> Unfiltered answers: ['360.0', '360.0', '360.0', '360.0', '360.0', '360.0', '180.0']
+==> Pre-filtered answers: ['360.0', '360.0', '360.0', '360.0', '360.0', '360.0', '180.0']
+==> RC-filtered answers: ['360.0', '360.0', '360.0', '360.0', '360.0']
+==> Confidence: defaultdict(<class 'float'>, {'360.0': 1.0})
+==> Survival rates: {'360.0': 0.7777777777777778}
+==> Scores: {'360.0': 1.7777777777777777}
+==> Winner answer: 360.0
+==> Correct: True
+Acc: 0.5654; Majority vote acc: 0.5550; Limit acc: 0.7382
+
+[Processing file 191; Total number of files: 200]
+
+You are very confident. Skipping...
+==> Correct: True
+Acc: 0.5677; Majority vote acc: 0.5573; Limit acc: 0.7396
+
+[Processing file 192; Total number of files: 200]
+
+==> Ground truth answer: 91
+==> Unfiltered answers: ['35.0', '91.0', '91.0', '91.0', '91.0']
+==> Pre-filtered answers: ['35.0', '91.0', '91.0', '91.0', '91.0']
+==> RC-filtered answers: []
+==> Winner answer: 91.0
+
+==> Correct: True
+Acc: 0.5699; Majority vote acc: 0.5596; Limit acc: 0.7409
+
+[Processing file 193; Total number of files: 200]
+
+Well, no correct answer in candidates. Skipping...
+==> Correct: False
+Acc: 0.5670; Majority vote acc: 0.5567; Limit acc: 0.7371
+
+[Processing file 194; Total number of files: 200]
+
+You are very confident. Skipping...
+==> Correct: True
+Acc: 0.5692; Majority vote acc: 0.5590; Limit acc: 0.7385
+
+[Processing file 195; Total number of files: 200]
+
+==> Ground truth answer: 12
+==> Unfiltered answers: ['12.0', '12.0', '12.0', '12.0', '12.0', '12.0', '9.6', '12.0', '12.0', '12.0', None]
+==> Pre-filtered answers: ['12.0', '12.0', '12.0', '12.0', '12.0', '12.0', '9.6', '12.0', '12.0', '12.0']
+==> RC-filtered answers: ['12.0', '12.0', '12.0']
+==> Confidence: defaultdict(<class 'float'>, {'12.0': 1.0})
+==> Survival rates: {'12.0': 0.4}
+==> Scores: {'12.0': 1.4}
+==> Winner answer: 12.0
+==> Correct: True
+Acc: 0.5714; Majority vote acc: 0.5612; Limit acc: 0.7398
+
+[Processing file 196; Total number of files: 200]
+
+==> Ground truth answer: 120
+==> Unfiltered answers: ['120.0', '120.0', '120.0', '120.0', '120.0', '120.0', '120.0', '120.0', None]
+==> Pre-filtered answers: ['120.0', '120.0', '120.0', '120.0', '120.0', '120.0', '120.0', '120.0']
+==> RC-filtered answers: ['120.0', '120.0']
+==> Confidence: defaultdict(<class 'float'>, {'120.0': 1.0})
+==> Survival rates: {'120.0': 0.36363636363636365}
+==> Scores: {'120.0': 1.3636363636363638}
+==> Winner answer: 120.0
+==> Correct: True
+Acc: 0.5736; Majority vote acc: 0.5635; Limit acc: 0.7411
+
+[Processing file 197; Total number of files: 200]
+
+==> Ground truth answer: 6277
+==> Unfiltered answers: ['6277.0', '6277.0', '6277.0', '6277.0', '6277.0', '15369.0', '6277.0']
+==> Pre-filtered answers: ['6277.0', '6277.0', '6277.0', '6277.0', '6277.0', '15369.0', '6277.0']
+==> RC-filtered answers: ['6277.0', '6277.0']
+==> Confidence: defaultdict(<class 'float'>, {'6277.0': 1.0})
+==> Survival rates: {'6277.0': 0.25}
+==> Scores: {'6277.0': 1.25}
+==> Winner answer: 6277.0
+==> Correct: True
+Acc: 0.5758; Majority vote acc: 0.5657; Limit acc: 0.7424
+
+[Processing file 198; Total number of files: 200]
+
+==> Ground truth answer: 320
+==> Unfiltered answers: ['100.0', '200.0', '60.0', '60.0', '320.0', '260.0', '260.0', '220.0', '220.0', '260.0', '280.0', '200.0', '100.0', '260.0']
+==> Pre-filtered answers: ['100.0', '200.0', '60.0', '60.0', '320.0', '260.0', '260.0', '220.0', '220.0', '260.0', '280.0', '200.0', '100.0', '260.0']
+==> RC-filtered answers: []
+==> Winner answer: 260.0
+
+==> Correct: False
+Acc: 0.5729; Majority vote acc: 0.5628; Limit acc: 0.7437
+
+[Processing file 199; Total number of files: 200]
+
+Well, no correct answer in candidates. Skipping...
+==> Correct: False
+Acc: 0.5700; Majority vote acc: 0.5600; Limit acc: 0.7400
+Accuracy: 0.5700; Majority vote accuracy: 0.5600; Limit accuracy: 0.7400
+Recording: 
+{'note': 'default', 'seed': 42, 'api': 'vllm', 'model_ckpt': 'microsoft/Phi-3-mini-4k-instruct', 'root_dir': 'run_outputs/GSM8K/Mistral-7B-v0.1/2024-12-05_13-32-46---[default]', 'dataset_name': 'GSM8K', 'resume': None, 'threshold': 0.999, 'max_num_seqs': 256, 'multi_choice_prompt_type': None, 'mask_left_boundary': 0.2, 'mask_right_boundary': 0.5, 'num_masked_solution_traces': 4, 'rc_mode': 'mid', 'rc_temperature': 1.0, 'rc_n_completions': 1, 'rc_criteria': 'reward', 'cutoff_rollout': -1, 'start_idx': -1, 'end_idx': -1, 'fewshot_config_path': 'prompts/GSM8K/fewshot_cot/fewshot_cot_config.json', 'fewshot_prompt_path': 'prompts/GSM8K/fewshot_cot/fewshot_cot_prompt.txt', 'discriminate_results_dir': 'run_outputs/GSM8K/Mistral-7B-v0.1/2024-12-05_13-32-46---[default]/dis_2024-12-07_16-00-20---default/results', 'num_correct': 114, 'num_correct_majvote': 112, 'num_correct_limit': 148, 'num_tested': 200, 'accuracy': 0.57, 'majority_vote_accuracy': 0.56, 'limit_accuracy': 0.74, 'avg_num_candidates': 9.06}
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23378069: <rStar_Project_GSM8K_subset_rollout2_discriminator_2024-12-05_13-32-46> in cluster <dcc> Done
+
+Job <rStar_Project_GSM8K_subset_rollout2_discriminator_2024-12-05_13-32-46> was submitted from host <hpclogin1> by user <s224184> in cluster <dcc> at Sat Dec  7 14:52:15 2024
+Job was executed on host(s) <4*n-62-12-23>, in queue <gpua100>, as user <s224184> in cluster <dcc> at Sat Dec  7 16:00:06 2024
+</zhome/d6/a/186925> was used as the home directory.
+</zhome/d6/a/186925/Deep_Learning/rStar> was used as the working directory.
+Started at Sat Dec  7 16:00:06 2024
+Terminated at Sat Dec  7 16:28:52 2024
+Results reported at Sat Dec  7 16:28:52 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+#BSUB -q gpua100
+#BSUB -J rStar_Project_GSM8K_subset_rollout2_discriminator_2024-12-05_13-32-46
+#BSUB -n 4
+#BSUB -gpu "num=1:mode=exclusive_process"
+#BSUB -R "span[hosts=1]"    # Ensures that all cores or tasks requested by the job run on a single host (node)
+#BSUB -R "rusage[mem=16GB]"
+#BSUB -M 16GB
+#BSUB -W 72:00
+#BSUB -o rStar_Output_rStar_Project_GSM8K_subset_rollout2_discriminator_2024-12-05_13-32-46_%J.out
+#BSUB -e rStar_Error_rStar_Project_GSM8K_subset_rollout2_discriminator_2024-12-05_13-32-46_%J.err
+
+
+module load python3/3.10.14
+module load cuda/12.4
+module load cudnn/v8.8.0-prod-cuda-12.X
+
+unset PYTHONHOME
+unset PYTHONPATH
+
+nvidia-smi > gpu_status_${LSB_JOBID}.log
+
+# Activate your virtual environment
+source /zhome/d6/a/186925/02356_Deep_Learning/Deep_learning_project_2024/02356_Deep_Learning_Project/bin/activate
+cd /zhome/d6/a/186925/Deep_Learning/rStar
+
+bash /zhome/d6/a/186925/Deep_Learning/rStar/scripts/run_gsm8k_discriminator_2024-12-05_13-32-46---[default].sh --gpu_memory_utilization 0.9
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   1537.00 sec.
+    Max Memory :                                 2041 MB
+    Average Memory :                             1585.71 MB
+    Total Requested Memory :                     65536.00 MB
+    Delta Memory :                               63495.00 MB
+    Max Swap :                                   -
+    Max Processes :                              5
+    Max Threads :                                37
+    Run time :                                   1726 sec.
+    Turnaround time :                            5797 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <rStar_Error_rStar_Project_GSM8K_subset_rollout2_discriminator_2024-12-05_13-32-46_23378069.err> for stderr output of this job.
+
