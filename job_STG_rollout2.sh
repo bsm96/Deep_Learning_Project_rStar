@@ -6,7 +6,7 @@
 #BSUB -R "span[hosts=1]"    # Ensures that all cores or tasks requested by the job run on a single host (node)
 #BSUB -R "rusage[mem=16GB]"
 #BSUB -M 16GB
-#BSUB -W 12:00
+#BSUB -W 72:00
 #BSUB -o rStar_Output_rStar_Project_STG_rollout2_%J.out
 #BSUB -e rStar_Error_rStar_Project_STG_rollout2_%J.err
 

@@ -1,0 +1,85 @@
+Namespace(note='default', api='vllm', seed=42, verbose=False, wandb_mode='disabled', model_ckpt='mistralai/Mistral-7B-v0.1', model_parallel=False, half_precision=False, max_tokens=1024, temperature=0.8, top_k=40, top_p=0.95, num_beams=1, max_num_worker=3, test_batch_size=1, tensor_parallel_size=1, prompts_root='prompts', data_root='data', dataset_name='GSM8K', test_json_filename='test_0_199', start_idx=0, end_idx=inf, run_outputs_root='run_outputs', eval_outputs_root='eval_outputs', num_rollouts=2, num_subquestions=3, num_votes=10, max_depth_allowed=5, mcts_discount_factor=1.0, mcts_exploration_weight=2.0, mcts_weight_scheduler='const', mcts_num_last_votes=32, save_tree=False, num_a1_steps=3, disable_a1=False, modify_prompts_for_rephrasing=False, disable_a5=False, enable_potential_score=False, fewshot_cot_prompt_path='prompts/GSM8K/fewshot_cot/fewshot_cot_prompt.txt', fewshot_cot_config_path='prompts/GSM8K/fewshot_cot/fewshot_cot_config.json', fewshot_ost_prompt_path='prompts/GSM8K/fewshot_ost/fewshot_ost_prompt.txt', fewshot_ost_config_path='prompts/GSM8K/fewshot_ost/fewshot_ost_config.json', decompose_template_path='prompts/GSM8K/decompose/decompose_template.json', decompose_prompt_path='prompts/GSM8K/decompose/decompose_prompt.txt', rephrasing_prompt_template_path='prompts/GSM8K/rephrasing_prompt_template.txt', fewshot_cot_prompt_rephrased_path='prompts/GSM8K/fewshot_cot/fewshot_cot_prompt.txt', fewshot_ost_prompt_rephrased_path='prompts/GSM8K/fewshot_ost/fewshot_ost_prompt.txt', decompose_prompt_rephrased_path='prompts/GSM8K/decompose/decompose_prompt.txt', run_outputs_dir='run_outputs/GSM8K/Mistral-7B-v0.1/2024-12-07_02-06-17---[default]', answer_sheets_dir='run_outputs/GSM8K/Mistral-7B-v0.1/2024-12-07_02-06-17---[default]/answer_sheets', cuda_0='NVIDIA A100 80GB PCIe', cuda_1=None, cuda_2=None, cuda_3=None)
+INFO 12-07 02:06:30 config.py:350] This model supports multiple tasks: {'generate', 'embedding'}. Defaulting to 'generate'.
+INFO 12-07 02:06:30 llm_engine.py:249] Initializing an LLM engine (v0.6.4.post1) with config: model='mistralai/Mistral-7B-v0.1', speculative_config=None, tokenizer='mistralai/Mistral-7B-v0.1', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=32768, download_dir=None, load_format=LoadFormat.AUTO, tensor_parallel_size=1, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, kv_cache_dtype=auto, quantization_param_path=None, device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='outlines'), observability_config=ObservabilityConfig(otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=42, served_model_name=mistralai/Mistral-7B-v0.1, num_scheduler_steps=1, chunked_prefill_enabled=False multi_step_stream_outputs=True, enable_prefix_caching=False, use_async_output_proc=True, use_cached_outputs=False, chat_template_text_format=string, mm_processor_kwargs=None, pooler_config=None)
+INFO 12-07 02:06:32 selector.py:135] Using Flash Attention backend.
+INFO 12-07 02:06:33 model_runner.py:1072] Starting to load model mistralai/Mistral-7B-v0.1...
+INFO 12-07 02:06:34 weight_utils.py:243] Using model weights format ['*.safetensors']
+INFO 12-07 02:06:36 model_runner.py:1077] Loading model weights took 13.4966 GB
+INFO 12-07 02:06:39 worker.py:232] Memory profiling results: total_gpu_memory=79.25GiB initial_memory_usage=14.00GiB peak_torch_memory=16.88GiB memory_usage_post_profile=14.01GiB non_torch_memory=0.51GiB kv_cache_size=53.94GiB gpu_memory_utilization=0.90
+INFO 12-07 02:06:39 gpu_executor.py:113] # GPU blocks: 27616, # CPU blocks: 8192
+INFO 12-07 02:06:39 gpu_executor.py:117] Maximum concurrency for 32768 tokens per request: 13.48x
+INFO 12-07 02:06:46 model_runner.py:1400] Capturing cudagraphs for decoding. This may lead to unexpected consequences if the model is not static. To run the model in eager mode, set 'enforce_eager=True' or use '--enforce-eager' in the CLI.
+INFO 12-07 02:06:46 model_runner.py:1404] If out-of-memory error occurs during cudagraph capture, consider decreasing `gpu_memory_utilization` or switching to eager mode. You can also reduce the `max_num_seqs` as needed to decrease memory usage.
+INFO 12-07 02:06:59 model_runner.py:1518] Graph capturing finished in 13 secs, took 0.26 GiB
+==> Total calls: 3938, Avg calls: 19.69
+==> Total tokens: 7038121, Avg tokens: 35190.61
+==> Total time: 15692.37s, Avg time: 78.46s
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23375865: <rStar_Project_GSM8K_subset_rollout2_temp1_2> in cluster <dcc> Done
+
+Job <rStar_Project_GSM8K_subset_rollout2_temp1_2> was submitted from host <hpclogin1> by user <s224184> in cluster <dcc> at Sat Dec  7 01:56:25 2024
+Job was executed on host(s) <4*n-62-18-9>, in queue <gpua100>, as user <s224184> in cluster <dcc> at Sat Dec  7 02:04:54 2024
+</zhome/d6/a/186925> was used as the home directory.
+</zhome/d6/a/186925/Deep_Learning/rStar> was used as the working directory.
+Started at Sat Dec  7 02:04:54 2024
+Terminated at Sat Dec  7 06:28:51 2024
+Results reported at Sat Dec  7 06:28:51 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+#BSUB -q gpua100
+#BSUB -J rStar_Project_GSM8K_subset_rollout2_temp1_2
+#BSUB -n 4
+#BSUB -gpu "num=1:mode=exclusive_process"
+#BSUB -R "span[hosts=1]"    # Ensures that all cores or tasks requested by the job run on a single host (node)
+#BSUB -R "rusage[mem=16GB]"
+#BSUB -M 16GB
+#BSUB -W 72:00
+#BSUB -o rStar_Output_rStar_Project_GSM8K_subset_rollout2_temp1_2_%J.out
+#BSUB -e rStar_Error_rStar_Project_GSM8K_subset_rollout2_temp1_2_%J.err
+
+
+module load python3/3.10.14
+module load cuda/12.4
+module load cudnn/v8.8.0-prod-cuda-12.X
+
+unset PYTHONHOME
+unset PYTHONPATH
+
+nvidia-smi > gpu_status_${LSB_JOBID}.log
+
+# Activate your virtual environment
+source /zhome/d6/a/186925/02356_Deep_Learning/Deep_learning_project_2024/02356_Deep_Learning_Project/bin/activate
+cd /zhome/d6/a/186925/Deep_Learning/rStar
+
+bash /zhome/d6/a/186925/Deep_Learning/rStar/scripts/run_gsm8k_generator_rollout2.sh --gpu_memory_utilization 0.9
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   15925.00 sec.
+    Max Memory :                                 13735 MB
+    Average Memory :                             7694.51 MB
+    Total Requested Memory :                     65536.00 MB
+    Delta Memory :                               51801.00 MB
+    Max Swap :                                   -
+    Max Processes :                              5
+    Max Threads :                                36
+    Run time :                                   15932 sec.
+    Turnaround time :                            16346 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <rStar_Error_rStar_Project_GSM8K_subset_rollout2_temp1_2_23375865.err> for stderr output of this job.
+
